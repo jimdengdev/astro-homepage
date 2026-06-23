@@ -2,6 +2,7 @@
 title: Hello World
 link: hello-world
 catalog: true
+draft: true
 date: 2024-01-05 00:00:00
 tags:
   - 随笔

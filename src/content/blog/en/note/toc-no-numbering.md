@@ -2,6 +2,7 @@
 title: Disabling TOC Numbering Example
 link: toc-no-numbering
 catalog: true
+draft: true
 tocNumbering: false
 date: 2024-01-07 00:00:00
 description: Demonstrates how to disable automatic numbering in the table of contents.

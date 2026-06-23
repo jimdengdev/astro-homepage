@@ -1,6 +1,7 @@
 ---
 title: Example Weekly Vol.1
 link: weekly-example-1
+draft: true
 catalog: true
 date: 2024-01-04 00:00:00
 description: This is an example weekly issue, demonstrating how the weekly/series feature works. Ideal for publishing regularly updated serial content.

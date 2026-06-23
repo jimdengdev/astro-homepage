@@ -11,23 +11,28 @@
 # Site Basic Information
 # =============================================================================
 site:
-  title: 余弦の博客 # 网站名称
-  alternate: cosine # 网站英文名称 用于页脚、Logo、@ handle 等
-  subtitle: WA 的一声就哭了 # 网站副标题
-  name: cos # 作者名称 - 请修改为你的名字
-  description: 一个基于 Astro 的现代化博客主题 # 网站描述
-  avatar: /img/avatar.webp # 网站头像
+  title: Jimdeng's Blog # 网站名称
+  alternate: jimdeng # 网站英文名称 用于页脚、Logo、@ handle 等
+  subtitle: Code is cheap. Show me the prompt # 网站副标题
+  name: jimdeng # 作者名称 - 请修改为你的名字
+  description: 后端开发 / Agent 开发 / 海米 # 网站描述
+  avatar: /img/favicon-512x512.png # 网站头像
   showLogo: true # 是否显示 Logo
-  author: Author # 作者名称 - 请修改为你的名字
-  url: https://koharu.cosine.ren # 站点 URL 用于 RSS 和 SEO
-  defaultOgImage: /img/avatar.webp # 默认 Open Graph 图片
-  startYear: 2024 # 建站年份
+  author: jimdeng # 作者名称 - 请修改为你的名字
+  url: https://jimdeng.com # 站点 URL 用于 RSS 和 SEO
+  defaultOgImage: /img/favicon-512x512.png # 默认 Open Graph 图片
+  startYear: 2026 # 建站年份
   timezone: Asia/Shanghai # 时区配置 (IANA 格式)，用于日期显示和处理
   keywords: # SEO 关键词 (全局)
     - 博客
-    - Astro
     - 技术
-    - 前端
+    - Astro
+    - AIGC
+    - AI
+    - Agent 开发
+    - 人工智能
+    - 机器学习
+
     # 请根据你的网站内容添加关键词
   # breadcrumbHome: 首页  # 面包屑导航中首页的显示名称（默认: '首页'）
   # icp:                         # ICP 备案号（可自定义链接）
@@ -54,9 +59,6 @@ i18n:
     - code: en
       label: English
       # enabled: false  # 内容存在但暂时禁用（保留内容但不生成路由）
-    - code: ja
-      label: 日本語
-
 # =============================================================================
 # Category Map
 # Maps Chinese category names to URL-friendly English slugs
@@ -71,10 +73,12 @@ categoryMap:
   # Secondary categories (for nested paths)
   前端: front-end
   # Add more as needed:
-  # 书摘: reading
-  # 后端: back-end
-  # 算法: algorithm
-  # 项目: project
+  书摘: reading
+  图集: gallery
+  后端: back-end
+  算法: algorithm
+  人工智能: ai
+  项目: project
 
 # =============================================================================
 # Featured Categories (Homepage)
@@ -89,19 +93,19 @@ categoryMap:
 featuredCategories:
   - link: life # 对应 categoryMap 中 随笔: life
     label: 随笔
-    image: /img/cover/2.webp
+    image: /img/cover/luffy_028.webp
     description: 生活记录、随想随笔
   - link: note # 对应 categoryMap 中 笔记: note
     label: 笔记
-    image: /img/cover/4.webp
+    image: /img/cover/op_char_005.jpg
     description: 技术笔记、学习笔记
-  - link: note/front-end # 嵌套分类：笔记/前端
-    label: 前端
-    image: /img/cover/1.webp
-    description: 前端技术相关
+  - link: note/reading # 嵌套分类：笔记/书摘
+    label: 书摘
+    image: /img/cover/op_char_014.jpg
+    description: 项目笔记
   - link: tools # 对应 categoryMap 中 工具: tools
     label: 工具
-    image: /img/cover/11.webp
+    image: /img/cover/crew_026.webp
     description: 工具使用、效率提升
 
 # =============================================================================
@@ -127,26 +131,24 @@ featuredSeries:
     label: 我的周刊 # 简短名称
     fullName: 我的技术周刊 # 完整名称
     description: | # 支持多行 Markdown
-      这是周刊/系列文章功能的示例配置。
-      你可以用它来发布定期更新的系列内容，如技术周刊、读书笔记系列等。
-      设置 enabled: false 可以关闭此功能。
+      发布定期更新的系列内容，如技术周刊、读书笔记、每周总结等。
     cover: /img/weekly_header.webp # 系列页面头图
     enabled: true # 启用此系列
     icon: ri:newspaper-line # 导航图标
     links: # 相关链接（可选）
-      github: https://github.com/your-username/your-repo # (可选) GitHub 仓库
+      github:  # (可选) GitHub 仓库
       rss: /rss.xml # (可选) RSS 订阅链接
       # chrome: https://chromewebstore.google.com/detail/your-extension-id # (可选) 浏览器插件
       # docs: https://your-docs-url # (可选) 文档链接
   # 示例：添加第二个系列（取消注释启用）
-  # - slug: reading # URL 路径: /reading
-  #   categoryName: 书摘
-  #   label: 读书笔记
-  #   fullName: 我的读书笔记
-  #   description: 阅读记录与读后感
-  #   cover: /img/weekly_header.webp # 记得添加，我这里就是个示例
-  #   enabled: true
-  #   icon: ri:book-read-line
+  - slug: reading # URL 路径: /reading
+    categoryName: 书摘
+    label: 读书笔记
+    fullName: 我的读书笔记
+    description: 阅读记录与读后感
+    cover: /img/cover/onepiece_bg_022.webp # 记得添加，我这里就是个示例
+    enabled: true
+    icon: ri:book-read-line
 
 # =============================================================================
 # Social Links
@@ -162,11 +164,11 @@ featuredSeries:
 # -----------------------------------------------------------------------------
 social:
   github:
-    url: https://github.com/your-username # 替换为你的 GitHub 链接
+    url: https://github.com/jimdengdev # 替换为你的 GitHub 链接
     icon: ri:github-fill # Remix Icon 的 GitHub 图标
     color: '#191717' # (可选) 图标颜色
   email:
-    url: mailto:your@email.com # 替换为你的邮箱，需加 mailto: 前缀
+    url: mailto:jimdengdev@qq.com # 替换为你的邮箱，需加 mailto: 前缀
     icon: ri:mail-line
     color: '#55acd5'
   rss:
@@ -231,24 +233,24 @@ friends:
       desc: FE / ACG / 手工 / 深色模式强迫症 / INFP / 兴趣广泛养两只猫的老宅女 / remote
       image: https://blog.cosine.ren/img/avatar.webp
       color: '#ed788b'
-    - site: 示例博客 A
-      url: https://example-a.com
-      owner: Alice
-      desc: 一个热爱技术的开发者
-      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Alice
-      color: '#BEDCFF'
-    - site: 示例博客 B
-      url: https://example-b.com
-      owner: Bob
-      desc: 分享生活与技术的小站
-      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Bob
-      color: '#FBC1CC'
-    - site: 示例博客 C
-      url: https://example-c.com
-      owner: Carol
-      desc: 记录学习与成长的地方
-      image: https://api.dicebear.com/7.x/avataaars/svg?seed=Carol
-      color: '#ABDCFF'
+    # - site: 示例博客 A
+    #   url: https://example-a.com
+    #   owner: Alice
+    #   desc: 一个热爱技术的开发者
+    #   image: https://api.dicebear.com/7.x/avataaars/svg?seed=Alice
+    #   color: '#BEDCFF'
+    # - site: 示例博客 B
+    #   url: https://example-b.com
+    #   owner: Bob
+    #   desc: 分享生活与技术的小站
+    #   image: https://api.dicebear.com/7.x/avataaars/svg?seed=Bob
+    #   color: '#FBC1CC'
+    # - site: 示例博客 C
+    #   url: https://example-c.com
+    #   owner: Carol
+    #   desc: 记录学习与成长的地方
+    #   image: https://api.dicebear.com/7.x/avataaars/svg?seed=Carol
+    #   color: '#ABDCFF'
 
 # =============================================================================
 # Announcements
@@ -305,9 +307,12 @@ announcements:
 # 默认封面列表 - 文章没有指定封面时将随机从列表中选择一张作为封面
 # 不设置则使用内置的 21 张默认封面 (/img/cover/1~21.webp)
 # =============================================================================
-# defaultCoverList:
-#   - /img/cover/1.webp
-#   - https://example.com/custom-cover.webp
+defaultCoverList:
+  - /img/cover/luffy_003.webp
+  - /img/cover/op_female_026.jpg
+  - /img/cover/crew_007.webp
+  - /img/cover/op_char_023.jpg
+  - /img/cover/op_char_047.jpg
 
 
 # =============================================================================
@@ -403,10 +408,10 @@ navigation:
     nameKey: nav.about
     path: /about
     icon: fa6-regular:circle-user
-  - name: 歌单
-    nameKey: nav.music
-    path: /music
-    icon: ri:music-2-fill
+  # - name: 歌单
+  #   nameKey: nav.music
+  #   path: /music
+  #   icon: ri:music-2-fill
 
 # =============================================================================
 # Christmas/Seasonal Features
@@ -595,7 +600,7 @@ seo:
 # Christmas/Seasonal Features
 # =============================================================================
 bgm:
-  enabled: true  # (有 audio 时自动启用，显式 false 可禁用)
+  enabled: false  # (有 audio 时自动启用，显式 false 可禁用)
   # metingApi: https://163.hyc.moe/  # Meting API 地址，默认为 https://163.hyc.moe/，推荐自部署
   audio:
     - title: 最爱山山
@@ -631,8 +636,8 @@ christmas:
 #   label: 导航显示名称（可选，默认：追番）
 #   icon: 导航图标，Iconify 格式（可选，默认：ri:bilibili-fill）
 # -----------------------------------------------------------------------------
-bangumi:
-  userId: cosine
+# bangumi:
+#   userId: cosine
   # label: 追番
   # icon: ri:bilibili-fill
 
@@ -651,7 +656,7 @@ bangumi:
 #     - urlTemplate: URL 模板，支持占位符 {path}（文件绝对路径）
 # -----------------------------------------------------------------------------
 dev:
-  localProjectPath: '/Users/yourname/path/to/astro-koharu' # 请修改为你的项目绝对路径
+  localProjectPath: '/Users/dengxiangming/MyFiles/MyCodes/astro-blog/astro-homepage' # 请修改为你的项目绝对路径
   contentRelativePath: 'src/content/blog'
   editors:
     - id: vscode
