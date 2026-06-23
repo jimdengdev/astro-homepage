@@ -2,6 +2,7 @@
 title: Welcome to astro-koharu
 link: getting-started
 catalog: true
+draft: true
 date: 2024-01-01 00:00:00
 description: Welcome to the astro-koharu blog theme! A modern blog system built on Astro with an elegant interface and rich features.
 tags:

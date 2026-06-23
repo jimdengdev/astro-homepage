@@ -30,5 +30,5 @@ export const MAX_WIDTH = {
  */
 export const PAGINATION = {
   // Posts per page for homepage and post listing
-  pageSize: 10,
+  pageSize: 5,
 } as const;

@@ -26,7 +26,7 @@ const rawHtml = series.description ? await marked.parse(series.description) : ''
 const descriptionHtml = getSanitizeHtml(rawHtml);
 ---
 
-<div class="relative flex z-0 max-h-200 min-h-[70dvh] items-center justify-center overflow-hidden pb-6">
+<div class="relative flex z-0 max-h-200 min-h-[70dvh] items-center justify-center overflow-hidden pt-16 pb-6">
   <div class="absolute inset-0 h-full bg-black/40"></div>
   <!-- Series cover image -->
   {
@@ -35,7 +35,7 @@ const descriptionHtml = getSanitizeHtml(rawHtml);
         <img
           src={series.cover}
           alt={seriesTitle}
-          class="h-full w-full object-cover"
+          class="h-full w-full object-cover object-top"
           loading="eager"
           fetchpriority="high"
           decoding="async"
