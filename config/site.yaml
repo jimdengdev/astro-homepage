@@ -614,8 +614,8 @@ analytics:
     endpoint: "你的 Umami 服务地址"
     statistics_display:
       token: "你的 Umami Share Token"
-      article_page_views: true
-      footer_site_stats: true
+      article_page_views: false
+      footer_site_stats: false
   # Google Analytics (GA4) configuration
   # enabled: 是否启用 GA4 统计
   # ga4MeasurementId: GA4 测量 ID，格式 G-XXXXXXXXXX
