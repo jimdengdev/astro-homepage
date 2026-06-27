@@ -1,4 +1,5 @@
 ---
+import { Comment } from '@components/comment';
 import PhotoGrid from '@components/gallery/PhotoGrid';
 import HomeSider from '@components/layout/HomeSider.astro';
 import { Badge } from '@components/ui/badge';
@@ -88,6 +89,8 @@ const photoCount = album.photos?.length ?? 0;
 
       {/* Photos */}
       <PhotoGrid client:load photos={album.photos} />
+
+      {(album.comments ?? true) && <Comment />}
     </div>
   </TwoColumnLayout>
 </Layout>
