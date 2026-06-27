@@ -1,0 +1,36 @@
+---
+import AlbumGrid from '@components/gallery/AlbumGrid';
+import HomeSider from '@components/layout/HomeSider.astro';
+import Cover from '@components/ui/cover/Cover.astro';
+import { CONTENT_PADDING } from '@constants/layout';
+import { siteConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
+import { getAlbums } from '@lib/gallery';
+import { getLocaleFromUrl, t } from '@/i18n';
+import yamlConfig from '../../config/site.yaml';
+
+const locale = getLocaleFromUrl(Astro.url.pathname);
+const galleryConfig = yamlConfig.gallery;
+const albums = getAlbums();
+const title = `${t(locale, 'gallery.title')} | ${siteConfig.title}`;
+const description = t(locale, 'gallery.subtitle');
+---
+
+<Layout title={title} description={description}>
+  <TwoColumnLayout>
+    <Cover slot="cover" title={t(locale, 'gallery.title')} backgroundImage={galleryConfig?.cover} />
+    <HomeSider slot="sider" />
+    <div
+      class={`bg-gradient-start shadow-box tablet:shadow-none flex flex-col gap-8 overflow-hidden ${CONTENT_PADDING.standard}`}
+    >
+      <div class="flex flex-col gap-2">
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{galleryConfig?.title ?? t(locale, 'gallery.title')}</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          {galleryConfig?.subtitle ?? t(locale, 'gallery.subtitle')}
+        </p>
+      </div>
+      <AlbumGrid client:load albums={albums} />
+    </div>
+  </TwoColumnLayout>
+</Layout>

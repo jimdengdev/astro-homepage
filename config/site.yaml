@@ -74,7 +74,7 @@ categoryMap:
   前端: front-end
   # Add more as needed:
   书摘: reading
-  图集: gallery
+  相册: gallery
   后端: back-end
   算法: algorithm
   人工智能: ai
@@ -132,7 +132,7 @@ featuredSeries:
     fullName: 我的技术周刊 # 完整名称
     description: | # 支持多行 Markdown
       发布定期更新的系列内容，如技术周刊、读书笔记、每周总结等。
-    cover: /img/weekly_header.webp # 系列页面头图
+    cover: /img/cover/luffy_030.webp # 系列页面头图
     enabled: true # 启用此系列
     icon: ri:newspaper-line # 导航图标
     links: # 相关链接（可选）
@@ -253,6 +253,30 @@ friends:
     #   desc: 记录学习与成长的地方
     #   image: https://api.dicebear.com/7.x/avataaars/svg?seed=Carol
     #   color: '#ABDCFF'
+
+# =============================================================================
+# Gallery
+# 相册配置 - 定义相册合集与单相册详情页数据
+# =============================================================================
+# title/subtitle: 相册列表页标题与副标题（可选，不提供时使用 i18n 默认值）
+# cover: 相册列表页背景图路径（相对于 public 目录）
+# albums: 相册数组
+#   - slug: URL 标识（必填，唯一，如 'chengdu-trip' → /gallery/chengdu-trip）
+#     title: 相册标题
+#     description: 相册描述
+#     date: 日期字符串
+#     location: 地点
+#     tags: 标签数组（用于列表页过滤）
+#     cover: 封面图路径（相对于 public 目录）
+#     photos: 照片数组
+#       - src: 照片路径（相对于 public 目录）
+#         alt: 替代文本
+#         caption: 照片说明
+# -----------------------------------------------------------------------------
+gallery:
+  title: 相册
+  subtitle: 记录生活中的美好瞬间
+  cover: /img/site_header_1920.webp
 
 # =============================================================================
 # Announcements
@@ -402,6 +426,10 @@ navigation:
         nameKey: nav.archives
         path: /archives
         icon: ri:archive-2-fill
+  - name: 相册
+    nameKey: nav.gallery
+    path: /gallery
+    icon: ri:image-line
   - name: 友链
     nameKey: nav.friends
     path: /friends

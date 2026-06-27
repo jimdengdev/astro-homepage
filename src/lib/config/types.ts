@@ -123,6 +123,47 @@ export interface FriendsConfig {
 }
 
 // =============================================================================
+// Gallery Configuration
+// =============================================================================
+
+export interface GalleryPhoto {
+  /** Photo image path (relative to public directory, e.g. /gallery/xxx.webp) */
+  src: string;
+  /** Optional alt text for accessibility */
+  alt?: string;
+  /** Optional caption shown below the photo */
+  caption?: string;
+}
+
+export interface GalleryAlbum {
+  /** URL-safe unique identifier (e.g. 'chengdu-trip') */
+  slug: string;
+  /** Album title */
+  title: string;
+  /** Album description */
+  description?: string;
+  /** Album date string shown in meta info */
+  date?: string;
+  /** Location string shown in meta info */
+  location?: string;
+  /** Tags used for filtering */
+  tags?: string[];
+  /** Cover image path (relative to public directory) */
+  cover: string;
+  /** Photos in this album */
+  photos: GalleryPhoto[];
+}
+
+export interface GalleryConfig {
+  /** Page title, defaults to i18n key 'gallery.title' */
+  title?: string;
+  /** Page subtitle, defaults to i18n key 'gallery.subtitle' */
+  subtitle?: string;
+  /** Cover background image for gallery list page (relative to public directory) */
+  cover?: string;
+}
+
+// =============================================================================
 // Announcements
 // =============================================================================
 
@@ -616,6 +657,8 @@ export interface SiteYamlConfig {
   featuredSeries?: FeaturedSeriesItem[] | FeaturedSeriesItem;
   social?: SocialConfig;
   friends?: FriendsConfig;
+  /** Photo gallery configuration */
+  gallery?: GalleryConfig;
   announcements?: AnnouncementConfig[];
   defaultCoverList?: string[];
   content?: ContentConfig;
