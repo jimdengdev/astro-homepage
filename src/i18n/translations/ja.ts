@@ -18,6 +18,7 @@ export const uiStrings: UIStrings = {
   'nav.music': '音楽',
   'nav.weekly': '週刊',
   'nav.bangumi': 'オタ活の記録',
+  'nav.gallery': 'ギャラリー',
 
   // ── 一般 ──────────────────────────────────────────────────
   'common.search': '検索',
@@ -114,6 +115,16 @@ export const uiStrings: UIStrings = {
   'friends.copyConfig': '構成をコピー',
   'friends.copiedConfig': 'コピーしました!',
   'friends.hint': '説明: 上記のコードをコピーして、下のコメントセクションに貼り付けてください。',
+
+  // ── Gallery ─────────────────────────────────────────────────
+  'gallery.title': 'ギャラリー',
+  'gallery.subtitle': '生活の美しい瞬間を記録する',
+  'gallery.backToList': 'アルバム一覧に戻る',
+  'gallery.photoCount': '{count} 枚の写真',
+  'gallery.allTags': 'すべて',
+  'gallery.noAlbums': 'アルバムがありません',
+  'gallery.location': '場所',
+  'gallery.date': '日付',
 
   // ── コードブロック ──────────────────────────────────────────────
   'code.copy': 'コードをコピー',

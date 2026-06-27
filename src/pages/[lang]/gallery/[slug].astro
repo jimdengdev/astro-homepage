@@ -1,0 +1,26 @@
+---
+import { getAlbums } from '@lib/gallery';
+import { defaultLocale, localeList } from '@/i18n/config';
+import AlbumDetailLayout from '../../../components/gallery/AlbumDetailLayout.astro';
+
+export function getStaticPaths() {
+  const nonDefaultLocales = localeList.filter((l) => l !== defaultLocale);
+  const albums = getAlbums();
+  const paths = [];
+
+  for (const lang of nonDefaultLocales) {
+    for (const album of albums) {
+      paths.push({
+        params: { lang, slug: album.slug },
+        props: { album, lang },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { album, lang } = Astro.props;
+---
+
+<AlbumDetailLayout album={album} locale={lang} />

@@ -1,0 +1,15 @@
+---
+import AlbumDetailLayout from '@components/gallery/AlbumDetailLayout.astro';
+import { getAlbums } from '@lib/gallery';
+import { getLocaleFromUrl } from '@/i18n';
+
+export function getStaticPaths() {
+  const albums = getAlbums();
+  return albums.map((album) => ({ params: { slug: album.slug }, props: { album } }));
+}
+
+const locale = getLocaleFromUrl(Astro.url.pathname);
+const { album } = Astro.props;
+---
+
+<AlbumDetailLayout album={album} locale={locale} />

@@ -15,9 +15,11 @@ import WaveSvg from './wave';
 export interface CoverProps {
   data?: BlogPost;
   title?: string;
+  /** Custom cover background image path (defaults to site header image) */
+  backgroundImage?: string;
 }
 
-const { data, title } = Astro.props as CoverProps;
+const { data, title, backgroundImage } = Astro.props as CoverProps;
 
 const { date, updated, title: dataTitle, draft } = data?.data ?? {};
 
@@ -25,7 +27,8 @@ const readState = data ? getPostReadingTime(data) : null;
 const isDraft = import.meta.env.DEV && draft === true;
 
 // 获取横幅图片的 LQIP 样式
-const bannerLqipStyle = getLqipStyle('/img/site_header_1920.webp');
+const bannerSrc = backgroundImage ?? '/img/site_header_1920.webp';
+const bannerLqipStyle = getLqipStyle(bannerSrc);
 
 const locale = getLocaleFromUrl(Astro.url.pathname);
 
@@ -108,11 +111,11 @@ const pageStatsConfig = href ? createArticleStatsConfig(href) : null;
     style={bannerLqipStyle}
   >
     <img
-      src="/img/site_header_1920.webp"
+      src={bannerSrc}
       alt="cover"
       class="h-full w-full object-cover"
       sizes="50vw"
-      srcset="/img/site_header_800.webp 800w,/img/site_header_1920.webp 1200w"
+      srcset={backgroundImage ? undefined : '/img/site_header_800.webp 800w,/img/site_header_1920.webp 1200w'}
       loading="eager"
       fetchpriority="high"
       decoding="async"

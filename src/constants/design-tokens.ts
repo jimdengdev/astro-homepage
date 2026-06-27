@@ -42,11 +42,11 @@ export const colors = {
     foreground: 'hsl(var(--warning-foreground))',
   },
 
-  // Shoka theme accent (replaces hardcoded #E95469)
+  // Shoka theme accent (now blue to match sky-sea hero image)
   shoka: {
-    DEFAULT: '#E95469',
-    light: '#FF6B7A',
-    dark: '#D63F55',
+    DEFAULT: '#29b6f6',
+    light: '#4fc3f7',
+    dark: '#0288d1',
   },
 
   // Theme toggle colors
@@ -366,8 +366,8 @@ export const zIndex = {
  * Multi-color arrays for gradients and backgrounds.
  */
 export const gridBackground = {
-  light: ['#ed719a', '#FFACDE', '#FBD7ED', '#EEF1F0', '#DDDDDD', '#B4B4B4'],
-  dark: ['#212832', '#3F4659', '#8592A7', '#EEEFEA', '#212832', '#3F4659'],
+  light: ['#38b6ff', '#7dd3fc', '#bae6fd', '#e0f2fe', '#f0f9ff', '#e0f2fe'],
+  dark: ['#0f172a', '#1e293b', '#334155', '#e0f2fe', '#0f172a', '#1e293b'],
 } as const;
 
 /**

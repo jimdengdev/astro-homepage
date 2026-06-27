@@ -17,6 +17,7 @@ export const uiStrings = {
   'nav.music': '歌单',
   'nav.weekly': '周刊',
   'nav.bangumi': '追番',
+  'nav.gallery': '相册',
 
   // ── Common ──────────────────────────────────────────────────
   'common.search': '搜索',
@@ -113,6 +114,16 @@ export const uiStrings = {
   'friends.copyConfig': '复制配置',
   'friends.copiedConfig': '已复制!',
   'friends.hint': '提示: 复制上方代码并在下方评论区粘贴发送即可，我会收到的～',
+
+  // ── Gallery ─────────────────────────────────────────────────
+  'gallery.title': '相册',
+  'gallery.subtitle': '记录生活中的美好瞬间',
+  'gallery.backToList': '返回相册列表',
+  'gallery.photoCount': '{count} 张照片',
+  'gallery.allTags': '全部',
+  'gallery.noAlbums': '暂无相册',
+  'gallery.location': '地点',
+  'gallery.date': '日期',
 
   // ── Code Block ──────────────────────────────────────────────
   'code.copy': '复制代码',

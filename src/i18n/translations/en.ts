@@ -18,6 +18,7 @@ export const uiStrings: UIStrings = {
   'nav.music': 'Music',
   'nav.weekly': 'Weekly',
   'nav.bangumi': 'Bangumi',
+  'nav.gallery': 'Gallery',
 
   // ── Common ──────────────────────────────────────────────────
   'common.search': 'Search',
@@ -114,6 +115,16 @@ export const uiStrings: UIStrings = {
   'friends.copyConfig': 'Copy Config',
   'friends.copiedConfig': 'Copied!',
   'friends.hint': 'Tip: Copy the code above and paste it in the comment section below.',
+
+  // ── Gallery ─────────────────────────────────────────────────
+  'gallery.title': 'Gallery',
+  'gallery.subtitle': 'Capturing beautiful moments in life',
+  'gallery.backToList': 'Back to albums',
+  'gallery.photoCount': '{count} photos',
+  'gallery.allTags': 'All',
+  'gallery.noAlbums': 'No albums yet',
+  'gallery.location': 'Location',
+  'gallery.date': 'Date',
 
   // ── Code Block ──────────────────────────────────────────────
   'code.copy': 'Copy code',
