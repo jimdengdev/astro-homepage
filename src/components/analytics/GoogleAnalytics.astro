@@ -1,0 +1,54 @@
+---
+/**
+ * Google Analytics (GA4) 注入组件
+ *
+ * 配置位于 config/site.yaml 的 analytics.google 段：
+ *   google:
+ *     enabled: true
+ *     ga4MeasurementId: G-XXXXXXXXXX
+ *     gtmId: GTM-XXXXXXX (可选)
+ *
+ * 优先级：gtmId > ga4MeasurementId
+ *  - 如果设置了 gtmId，仅注入 GTM 容器
+ *  - 否则如果设置了 ga4MeasurementId，注入 gtag.js
+ */
+import yamlConfig from '../../../config/site.yaml';
+
+const google = yamlConfig.analytics?.google;
+const enabled = google?.enabled ?? false;
+const gtmId = google?.gtmId?.trim();
+const ga4Id = google?.ga4MeasurementId?.trim();
+
+const injectGtm = Boolean(enabled && gtmId);
+const injectGa4 = Boolean(enabled && !gtmId && ga4Id);
+---
+
+{injectGtm && (
+  <>
+    {/* Google Tag Manager */}
+    <script
+      is:inline
+      define:vars={{ gtmId }}
+    >{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtmId);`}</script>
+    {/* End Google Tag Manager */}
+  </>
+)}
+
+{injectGa4 && (
+  <>
+    {/* Google tag (gtag.js) - GA4 */}
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+    />
+    <script
+      is:inline
+      define:vars={{ ga4Id }}
+    >{`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', ga4Id);`}</script>
+    {/* End Google tag (gtag.js) */}
+  </>
+)}

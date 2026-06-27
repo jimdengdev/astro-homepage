@@ -116,6 +116,10 @@ export interface FriendsIntro {
 export interface FriendsConfig {
   intro: FriendsIntro;
   data: FriendLink[];
+  /** Per-page comment toggle (false to hide comments on friends page) */
+  comments?: boolean;
+  /** Hint text shown below the friend request form */
+  hint?: string;
 }
 
 // =============================================================================
@@ -440,6 +444,12 @@ export interface CommentConfig {
 
 export interface UmamiConfig {
   enabled: boolean;
+  /**
+   * 是否注入 Umami 统计脚本（@yeskunall/astro-umami 集成）。
+   * - 设为 true: Umami 既做统计又读 PV
+   * - 设为 false: Umami 不注入统计脚本（由其他工具如 GA4 接管统计），但 PV 显示功能仍可用
+   */
+  scriptEnabled: boolean;
   id: string;
   endpoint: string;
   statistics_display?: {
@@ -450,8 +460,22 @@ export interface UmamiConfig {
   };
 }
 
+/**
+ * Google Analytics (GA4) configuration.
+ * Provide a `ga4MeasurementId` (G-XXXXXXXXXX) to inject the gtag.js snippet.
+ * Optionally provide a `gtmId` (GTM-XXXXXXX) for Google Tag Manager.
+ */
+export interface GoogleAnalyticsConfig {
+  enabled: boolean;
+  /** GA4 Measurement ID, format: G-XXXXXXXXXX */
+  ga4MeasurementId?: string;
+  /** Google Tag Manager ID, format: GTM-XXXXXXX */
+  gtmId?: string;
+}
+
 export interface AnalyticsConfig {
   umami?: UmamiConfig;
+  google?: GoogleAnalyticsConfig;
 }
 
 // =============================================================================

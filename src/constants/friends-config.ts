@@ -14,3 +14,5 @@ export const friendsIntro: FriendsIntro = yamlConfig.friends?.intro ?? {
   applyTitle: 'Apply for friend link',
   applyDesc: 'Leave a comment with the following format',
 };
+
+export const friendsHint: string = yamlConfig.friends?.hint ?? '';

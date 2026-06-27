@@ -99,10 +99,10 @@ featuredCategories:
     label: 笔记
     image: /img/cover/op_char_005.jpg
     description: 技术笔记、学习笔记
-  # - link: note/reading # 嵌套分类：笔记/书摘（需要文章 categories: [["笔记", "书摘"]]）
-  #   label: 书摘
-  #   image: /img/cover/op_char_014.jpg
-  #   description: 项目笔记
+  - link: note/reading # 嵌套分类：笔记/书摘（需要文章 categories: [["笔记", "书摘"]]）
+    label: 书摘
+    image: /img/cover/op_char_014.jpg
+    description: 项目笔记
   - link: tools # 对应 categoryMap 中 工具: tools
     label: 工具
     image: /img/cover/crew_026.webp
@@ -214,6 +214,8 @@ social:
 #   - color: (可选) 卡片背景色，十六进制格式
 # -----------------------------------------------------------------------------
 friends:
+  comments: true
+  hint: "提示: 复制上方配置并在下面粘贴到评论区或者发送到jimdengdev@qq.com邮箱即可，收到后会立马更新～"
   intro:
     title: 友情链接 # 页面标题
     subtitle: 欢迎交换友链！ # 页面副标题
@@ -572,13 +574,27 @@ comment:
 # -----------------------------------------------------------------------------
 analytics:
   umami:
+    # enabled: PV 显示总开关（页脚全站 PV、文章卡片 PV）
     enabled: true
-    id: your-umami-id
-    endpoint: https://stats.example.com
-    # statistics_display:
-    #   token: your-umami-share-token
-    #   article_page_views: true
-    #   footer_site_stats: true
+    # scriptEnabled: Umami 统计脚本注入开关（由 @yeskunall/astro-umami 控制）
+    #   - true:  注入 Umami 统计脚本（Umami 自己做 PV 统计）
+    #   - false: 不注入（由 GA4 等其他工具负责统计），但 PV 显示功能仍可用
+    # 双轨运行（GA4 统计 + Umami 显示 PV）时设为 false
+    scriptEnabled: false
+    id: "你的 Umami Website ID"
+    endpoint: "你的 Umami 服务地址"
+    statistics_display:
+      token: "你的 Umami Share Token"
+      article_page_views: true
+      footer_site_stats: true
+  # Google Analytics (GA4) configuration
+  # enabled: 是否启用 GA4 统计
+  # ga4MeasurementId: GA4 测量 ID，格式 G-XXXXXXXXXX
+  # gtmId: Google Tag Manager ID，格式 GTM-XXXXXXX (可选，启用后会替代 ga4MeasurementId)
+  google:
+    enabled: true
+    ga4MeasurementId: G-DDJMHXG8D5
+    # gtmId: GTM-XXXXXXX
 
 # =============================================================================
 # SEO Configuration

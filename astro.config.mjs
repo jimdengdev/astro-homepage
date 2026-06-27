@@ -47,8 +47,9 @@ const yamlConfig = loadConfigForAstro();
 const { ANALYZE } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
 const isAnalyze = ANALYZE === 'true';
 // Get Umami analytics config from YAML
+// scriptEnabled 控制是否注入 Umami 统计脚本（与 PV 显示开关 enabled 解耦）
 const umamiConfig = yamlConfig.analytics?.umami;
-const umamiEnabled = umamiConfig?.enabled ?? false;
+const umamiEnabled = umamiConfig?.scriptEnabled ?? umamiConfig?.enabled ?? false;
 const umamiId = umamiConfig?.id;
 // Normalize endpoint URL to remove trailing slashes
 const umamiEndpoint = normalizeUrl(umamiConfig?.endpoint);

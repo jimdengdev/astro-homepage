@@ -9,8 +9,10 @@ import Layout from '@layouts/Layout.astro';
 import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
 import { Comment } from '@/components/comment';
 import { getLocaleFromUrl, t } from '@/i18n';
+import yamlConfig from '../../config/site.yaml';
 
 const locale = getLocaleFromUrl(Astro.url.pathname);
+const { comments: showComments = true } = yamlConfig.friends ?? {};
 const title = `${t(locale, 'friends.title')} | ${siteConfig.title}`;
 const description = t(locale, 'friends.title');
 ---
@@ -27,7 +29,7 @@ const description = t(locale, 'friends.title');
       </div>
       <div class="mb-4">
         <FriendRequestForm client:visible />
-        <Comment />
+        {showComments && <Comment />}
       </div>
     </div>
   </TwoColumnLayout>
