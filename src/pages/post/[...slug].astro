@@ -2,6 +2,7 @@
 import CustomContent from '@components/common/CustomContent.astro';
 import HomeSider from '@components/layout/HomeSider.astro';
 import SummaryPanel, { type SummarySource } from '@components/post/SummaryPanel';
+import { Badge } from '@components/ui/badge';
 import Cover from '@components/ui/cover/Cover.astro';
 import { defaultContentConfig } from '@constants/content-config';
 import { HomeSiderType } from '@constants/enum';
@@ -20,6 +21,7 @@ import {
   getSortedPosts,
   translateCategoryName,
 } from '@lib/content';
+import { buildTagPath } from '@lib/content/tags';
 import { formatForSeo } from '@lib/date';
 import { encodeSlug } from '@lib/route';
 import { getOgImageUrl } from '@lib/seo/og-image';
@@ -192,6 +194,20 @@ if (post.data.description) {
         </div>
         {import.meta.env.DEV && <EditButton client:only="react" postId={postId} />}
       </nav>
+      {tags?.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {tags.map((tag: string) => (
+            <a href={localizedPath(buildTagPath(tag), locale)}>
+              <Badge
+                variant="outline"
+                class='hover:text-badge-primary/80 shrink-0 cursor-pointer gap-0.5 border-none px-1 text-xs font-bold whitespace-nowrap transition-colors duration-300'
+              >
+                <Icon name="fa6-solid:tags" /> {tag}
+              </Badge>
+            </a>
+          ))}
+        </div>
+      )}
       {isFallback && (
         <div class="flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-3 text-sm text-amber-700 dark:text-amber-400">
           <Icon name="ri:translate-2" class="h-4 w-4 shrink-0" />
@@ -206,7 +222,7 @@ if (post.data.description) {
       <article class="prose md:prose-sm dark:prose-invert" data-pagefind-body>
         <CustomContent Content={Content} />
       </article>
-      <Comment />
+      {(post.data.comments ?? true) && <Comment />}
     </div>
   </TwoColumnLayout>
 </Layout>

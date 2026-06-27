@@ -13,6 +13,7 @@ interface Props {
 }
 
 import { ClientRouter } from 'astro:transitions';
+import GoogleAnalytics from '@components/analytics/GoogleAnalytics.astro';
 import AnnouncementProvider from '@components/announcement/AnnouncementProvider.astro';
 import GlobalBGMPlayer from '@components/bgm/GlobalBGMPlayer';
 import ChristmasEffects from '@components/christmas/ChristmasEffects.astro';
@@ -79,6 +80,7 @@ const keywords = keywordsOverride || siteConfig.keywords || [siteConfig.title];
 <!doctype html>
 <html transition:name="root" lang={htmlLang} class="vertical-scrollbar">
   <head>
+    <GoogleAnalytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     {/* Favicons */}

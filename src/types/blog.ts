@@ -26,6 +26,8 @@ export interface BlogSchema {
   quiz?: boolean;
   /** Password for encrypting the entire post content */
   password?: string;
+  /** Per-post comment toggle (false to hide comments, defaults to true) */
+  comments?: boolean;
   /** Keywords for SEO */
   keywords?: string[];
 }
