@@ -8,6 +8,7 @@
       "location": "四川·成都",
       "tags": ["旅行", "成都", "生活"],
       "cover": "/img/cover/onepiece_bg_035.webp",
+      "comments": true,
       "photos": [
         { "src": "/img/cover/luffy_003.webp", "alt": "成都街景", "caption": "街头的烟火气" },
         { "src": "/img/cover/op_char_005.jpg", "alt": "宽窄巷子", "caption": "窄巷里的慢时光" },
@@ -25,6 +26,7 @@
       "location": "上海",
       "tags": ["旅行", "上海"],
       "cover": "/img/cover/onepiece_bg_038.webp",
+      "comments": true,
       "photos": [
         { "src": "/img/cover/op_char_014.jpg", "alt": "外滩夜景", "caption": "黄浦江畔的万家灯火" },
         { "src": "/img/cover/onepiece_bg_002.webp", "alt": "陆家嘴天际线", "caption": "仰望天际" },

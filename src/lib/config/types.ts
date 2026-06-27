@@ -150,6 +150,8 @@ export interface GalleryAlbum {
   tags?: string[];
   /** Cover image path (relative to public directory) */
   cover: string;
+  /** Whether to show comments on this album detail page (defaults to true) */
+  comments?: boolean;
   /** Photos in this album */
   photos: GalleryPhoto[];
 }
