@@ -12,6 +12,7 @@ categories:
 keywords:
   - 周刊
   - 示例
+cover: https://pub-d024222e46cb4d2b8372fa948f890db7.r2.dev/nice_pic.jpeg
 ---
 
 这是一期示例周刊，展示周刊/系列文章功能的使用方式。
@@ -19,6 +20,8 @@ keywords:
 ## 关于周刊功能
 
 周刊是 astro-koharu 的特色功能之一，适合发布定期更新的系列内容，如：
+
+![cover](https://pub-d024222e46cb4d2b8372fa948f890db7.r2.dev/nice_pic.jpeg)
 
 - 技术周刊
 - 读书笔记系列

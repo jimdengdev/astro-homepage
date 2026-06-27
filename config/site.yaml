@@ -13,7 +13,7 @@
 site:
   title: Jimdeng's Blog # 网站名称
   alternate: jimdeng # 网站英文名称 用于页脚、Logo、@ handle 等
-  subtitle: Code is cheap. Show me the prompt # 网站副标题
+  subtitle: Code is cheap, show me the prompt # 网站副标题
   name: jimdeng # 作者名称 - 请修改为你的名字
   description: 后端开发 / Agent 开发 / 海米 # 网站描述
   avatar: /img/favicon-512x512.png # 网站头像
@@ -99,10 +99,10 @@ featuredCategories:
     label: 笔记
     image: /img/cover/op_char_005.jpg
     description: 技术笔记、学习笔记
-  - link: note/reading # 嵌套分类：笔记/书摘
-    label: 书摘
-    image: /img/cover/op_char_014.jpg
-    description: 项目笔记
+  # - link: note/reading # 嵌套分类：笔记/书摘（需要文章 categories: [["笔记", "书摘"]]）
+  #   label: 书摘
+  #   image: /img/cover/op_char_014.jpg
+  #   description: 项目笔记
   - link: tools # 对应 categoryMap 中 工具: tools
     label: 工具
     image: /img/cover/crew_026.webp
@@ -141,14 +141,14 @@ featuredSeries:
       # chrome: https://chromewebstore.google.com/detail/your-extension-id # (可选) 浏览器插件
       # docs: https://your-docs-url # (可选) 文档链接
   # 示例：添加第二个系列（取消注释启用）
-  - slug: reading # URL 路径: /reading
-    categoryName: 书摘
-    label: 读书笔记
-    fullName: 我的读书笔记
-    description: 阅读记录与读后感
-    cover: /img/cover/onepiece_bg_022.webp # 记得添加，我这里就是个示例
-    enabled: true
-    icon: ri:book-read-line
+  # - slug: reading # URL 路径: /reading（需要文章 categories: [["笔记", "书摘"]] 或 categories: ["书摘"]）
+  #   categoryName: 书摘
+  #   label: 读书笔记
+  #   fullName: 我的读书笔记
+  #   description: 阅读记录与读后感
+  #   cover: /img/cover/onepiece_bg_022.webp
+  #   enabled: true
+  #   icon: ri:book-read-line
 
 # =============================================================================
 # Social Links
@@ -497,7 +497,10 @@ navigation:
     # path: # 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
     # lang: # 语言 (默认: 'zh-CN')
 comment:
-  provider: none  # 'remark42' | 'giscus' | 'waline' | 'twikoo' | 'none'
+  provider: 'twikoo'  # 'remark42' | 'giscus' | 'waline' | 'twikoo' | 'none'
+
+  # path: location.pathname          # 用于区分不同文章的自定义 js 路径
+
   # remark42:
   #   host: https://comment.example.com/
   #   siteId: your-site-id
@@ -550,10 +553,11 @@ comment:
   #   # locale:                        # 自定义语言显示 (可选)
   #   #   placeholder: '请留言...'      # 自定义输入框占位文本
   twikoo:
-    envId: https://your-twikoo.vercel.app  # Twikoo 环境 ID (腾讯云) 或 Vercel 环境地址 (必填)
+    region: ""              # 环境地域，默认为 ap-shanghai
+    envId: https://twikoo.jimdeng.com # Twikoo 环境 ID (腾讯云) 或 Vercel 环境地址 (必填)
     # region: ap-shanghai              # 环境地域，默认为 ap-shanghai
     # path: location.pathname          # 用于区分不同文章的自定义 js 路径
-    # lang: zh-CN                     # 语言 (默认: 'zh-CN')
+    lang: zh-CN                     # 语言 (默认: 'zh-CN')
 
 # =============================================================================
 # Analytics (Umami)
