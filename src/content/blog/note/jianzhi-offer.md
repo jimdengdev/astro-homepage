@@ -3,6 +3,7 @@ title: "剑指offer(Go版本)-数组"
 link: jianzhi-offer
 catalog: true
 date: 2024-09-07T23:43:34+08:00
+updated: 2024-09-07T23:43:34+08:00
 draft: false
 math: true
 quiz: true
@@ -10,8 +11,9 @@ description: "剑指offer Go 版本"
 tags:
   - Go语言
   - 数组
-categories:
   - 算法
+categories:
+  - 笔记
 keywords:
   - Go语言
   - 数组
