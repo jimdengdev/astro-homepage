@@ -18,6 +18,7 @@ export const uiStrings = {
   'nav.weekly': '周刊',
   'nav.bangumi': '追番',
   'nav.gallery': '相册',
+  'nav.diary': '日记',
 
   // ── Common ──────────────────────────────────────────────────
   'common.search': '搜索',
@@ -349,4 +350,15 @@ export const uiStrings = {
   'bangumi.noItems': '暂无收藏',
   'bangumi.error': '加载失败，请稍后重试',
   'bangumi.retry': '重试',
+
+  // ── Diary ───────────────────────────────────────────────────
+  'diary.title': '日记',
+  'diary.description': '我的日记记录',
+  'diary.today': '今天',
+  'diary.noMemo': '这一天没有笔记',
+  'diary.noRecentMemos': '暂无最近笔记',
+  'diary.recentRecords': '最近记录',
+  'diary.fromMemos': '来自 Memos',
+  'diary.error': '加载失败，请稍后重试',
+  'diary.retry': '重试',
 } as const;

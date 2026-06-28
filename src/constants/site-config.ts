@@ -9,6 +9,7 @@ import type {
   FeaturedCategory,
   FeaturedSeriesItem,
   I18nConfig,
+  MemosConfig,
   RouterItem,
   SiteBasicConfig,
 } from '@lib/config/types';
@@ -317,18 +318,49 @@ export const bgmConfig: { enabled: boolean; metingApi?: string; audio: BgmAudioG
 // Bangumi media tracking config — null when disabled (section commented out in YAML)
 export const bangumiConfig: BangumiConfig | null = yamlConfig.bangumi ?? null;
 
-// Navigation routers with auto-injected bangumi entry
-export const routers: RouterItem[] = bangumiConfig
-  ? [
-      ...baseRouters,
-      {
+// Memos diary config — null when disabled (enabled: false or section commented out in YAML)
+export const memosConfig: MemosConfig | null =
+  yamlConfig.memos === undefined || yamlConfig.memos === null
+    ? null
+    : yamlConfig.memos.enabled === false
+      ? null
+      : yamlConfig.memos;
+
+function buildRouters(): RouterItem[] {
+  const memosItem: RouterItem | null = memosConfig
+    ? {
+        name: memosConfig.label,
+        nameKey: memosConfig.label ? undefined : 'nav.diary',
+        path: '/diary',
+        icon: memosConfig.icon ?? 'ri:booklet-line',
+      }
+    : null;
+
+  const bangumiItem: RouterItem | null = bangumiConfig
+    ? {
         name: bangumiConfig.label,
         nameKey: bangumiConfig.label ? undefined : 'nav.bangumi',
         path: '/bangumi',
         icon: bangumiConfig.icon ?? 'ri:bilibili-fill',
-      },
-    ]
-  : baseRouters;
+      }
+    : null;
+
+  // Insert memos right before 'gallery' (memos 在相册左边一列),
+  // append bangumi at the end if enabled
+  const result: RouterItem[] = [];
+  for (const item of baseRouters) {
+    if (memosItem && item.path === '/gallery') {
+      result.push(memosItem);
+    }
+    result.push(item);
+  }
+  if (bangumiItem) {
+    result.push(bangumiItem);
+  }
+  return result;
+}
+
+export const routers: RouterItem[] = buildRouters();
 
 // Map YAML dev tools config with defaults (dev only)
 export const devConfig: DevConfig = {

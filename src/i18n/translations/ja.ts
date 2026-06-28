@@ -350,4 +350,16 @@ export const uiStrings: UIStrings = {
   'bangumi.noItems': 'コレクションがありません',
   'bangumi.error': '読み込みに失敗しました。もう一度お試しください。',
   'bangumi.retry': '再試行',
+
+  // ── Diary ───────────────────────────────────────────────────
+  'diary.title': '日記',
+  'diary.description': '私の日記記録',
+  'diary.today': '今日',
+  'diary.noMemo': 'この日はノートがありません',
+  'diary.noRecentMemos': '最近のノートがありません',
+  'diary.recentRecords': '最近の記録',
+  'diary.fromMemos': 'Memos より',
+  'diary.error': '読み込みに失敗しました。もう一度お試しください。',
+  'diary.retry': '再試行',
+  'nav.diary': '日記',
 };

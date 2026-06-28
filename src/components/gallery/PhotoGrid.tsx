@@ -1,6 +1,5 @@
 import type { GalleryPhoto } from '@lib/config/types';
 import { useCallback, useState } from 'react';
-import { cn } from '@/lib/utils';
 import Lightbox from './Lightbox';
 
 interface PhotoGridProps {
