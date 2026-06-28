@@ -350,4 +350,16 @@ export const uiStrings: UIStrings = {
   'bangumi.noItems': 'No collections',
   'bangumi.error': 'Failed to load, please try again',
   'bangumi.retry': 'Retry',
+
+  // ── Diary ───────────────────────────────────────────────────
+  'diary.title': 'Diary',
+  'diary.description': 'My diary records',
+  'diary.today': 'Today',
+  'diary.noMemo': 'No notes on this day',
+  'diary.noRecentMemos': 'No recent notes',
+  'diary.recentRecords': 'Recent Records',
+  'diary.fromMemos': 'From Memos',
+  'diary.error': 'Failed to load, please try again',
+  'diary.retry': 'Retry',
+  'nav.diary': 'Diary',
 };

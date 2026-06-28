@@ -44,7 +44,7 @@ const yamlConfig = loadConfigForAstro();
 
 // Bundle analysis mode: ANALYZE=true pnpm build
 // Use loadEnv to read .env file (astro.config.mjs runs before Vite loads .env)
-const { ANALYZE } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
+const { ANALYZE, PUBLIC_MEMOS_URL } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
 const isAnalyze = ANALYZE === 'true';
 // Get Umami analytics config from YAML
 // scriptEnabled 控制是否注入 Umami 统计脚本（与 PV 显示开关 enabled 解耦）
@@ -228,6 +228,15 @@ export default defineConfig({
       sourcemap: isAnalyze,
     },
     plugins: [yaml(), conditionalSnowfall(), svgr(), tailwindcss()],
+    server: {
+      proxy: {
+        '/api/memos': {
+          target: PUBLIC_MEMOS_URL || 'http://op.996007965.xyz:19230',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/memos/, '/api/v1/memos'),
+        },
+      },
+    },
     ssr: {
       noExternal: ['react-tweet'],
     },

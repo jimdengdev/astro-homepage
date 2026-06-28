@@ -1,0 +1,30 @@
+---
+import HomeSider from '@components/layout/HomeSider.astro';
+import { MemosDiary } from '@components/memos';
+import Cover from '@components/ui/cover/Cover.astro';
+import { CONTENT_PADDING } from '@constants/layout';
+import { memosConfig, siteConfig } from '@constants/site-config';
+import Layout from '@layouts/Layout.astro';
+import TwoColumnLayout from '@layouts/TwoColumnLayout.astro';
+import { Comment } from '@/components/comment';
+import { getLocaleFromUrl, t } from '@/i18n';
+
+if (!memosConfig) return Astro.redirect('/404');
+
+const locale = getLocaleFromUrl(Astro.url.pathname);
+const title = `${t(locale, 'diary.title')} | ${siteConfig.title}`;
+const description = t(locale, 'diary.description');
+---
+
+<Layout title={title} description={description}>
+  <TwoColumnLayout>
+    <Cover slot="cover" title={t(locale, 'diary.title')} />
+    <HomeSider slot="sider" />
+    <div
+      class={`bg-gradient-start shadow-box tablet:shadow-none flex flex-col overflow-hidden ${CONTENT_PADDING.standard}`}
+    >
+      <MemosDiary client:load />
+      <Comment />
+    </div>
+  </TwoColumnLayout>
+</Layout>

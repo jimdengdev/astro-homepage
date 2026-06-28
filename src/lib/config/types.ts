@@ -629,6 +629,21 @@ export interface BangumiConfig {
 }
 
 // =============================================================================
+// Memos (Diary) Configuration
+// =============================================================================
+
+export interface MemosConfig {
+  /** Whether to enable the diary feature */
+  enabled?: boolean;
+  /** Memos API base URL */
+  url?: string;
+  /** Navigation display name, defaults to i18n key 'nav.diary' */
+  label?: string;
+  /** Navigation icon (Iconify format), defaults to 'ri:booklet-line' */
+  icon?: string;
+}
+
+// =============================================================================
 // i18n Configuration
 // =============================================================================
 
@@ -674,6 +689,8 @@ export interface SiteYamlConfig {
   bgm?: BgmConfig;
   /** Bangumi media tracking page — comment out to disable */
   bangumi?: BangumiConfig;
+  /** Memos diary page — comment out to disable */
+  memos?: MemosConfig;
   christmas?: ChristmasConfig;
   /** Development tools configuration (dev only) */
   dev?: DevConfig;
