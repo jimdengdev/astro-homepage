@@ -22,6 +22,7 @@ description: 帮助用户按照 astro-homepage 博客的规范创建新博文。
    title: [文章标题]
    link: [URL slug，使用英文短横线分隔]
    catalog: true
+   comments: true
    date: [当前日期时间，格式：YYYY-MM-DD HH:mm:ss]
    description: [一句话描述文章内容，50-100字]
    tags:
@@ -30,12 +31,16 @@ description: 帮助用户按照 astro-homepage 博客的规范创建新博文。
      - [相关标签3]
    categories:
      - [一级分类, 二级分类]
+   keywords:
+     - [文章主题/关键词]
+     - [文章主题/关键词]
+     - [文章主题/关键词]
    ---
    ```
 
    **分类格式说明**：
    - 嵌套分类使用数组格式：`- [一级分类, 二级分类]`
-   - 例如：`- [笔记, 前端]` 会创建 URL `/categories/note/front-end` 和面包屑 "笔记 → 前端"
+   - 例如：`- [笔记, 前端]` 会创建 URL `/categories/note/back-end` 和面包屑 "笔记 → 后端"
    - 单个分类直接写分类名：`categories: 随笔`
 
 3. **确定文件路径**：
@@ -53,13 +58,18 @@ description: 帮助用户按照 astro-homepage 博客的规范创建新博文。
 ### 一级分类及其子分类
 
 1. **笔记 (note/)**
-   - 前端 (front-end/)
-     - React
-     - Vue
-     - TypeScript
-     - CSS
+   - 后端 (back-end/)
+     - Golang
+     - MySQL
+     - PostgreSQL
+     - Redis
+     - MongoDB
+     - Docker
+     - Kubernetes
+     - Linux
+     - 技术架构
      - 性能优化
-   - 后端 (back-end/) - 如果需要使用，确保已在 `_config.yml` 中添加映射
+   - 前端 (front-end/) - 如果需要使用，确保已在 `_config.yml` 中添加映射
    - 其他新增子分类 - 需要先在 `_config.yml` 添加映射
 
 2. **工具 (tools/)**
