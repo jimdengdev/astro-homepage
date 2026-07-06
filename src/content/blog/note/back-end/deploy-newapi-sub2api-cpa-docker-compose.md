@@ -269,7 +269,7 @@ sudo apt install caddy
 
 ### Caddyfile 配置
 
-```caddyfile
+```text
 # 禁止 IP 直连访问
 http:// {
     respond "Forbidden" 403
