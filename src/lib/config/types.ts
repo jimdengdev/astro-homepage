@@ -516,9 +516,23 @@ export interface GoogleAnalyticsConfig {
   gtmId?: string;
 }
 
+/**
+ * Vercel Web Analytics configuration.
+ * Requires deploying on Vercel platform. Uses @vercel/analytics package.
+ * @see https://vercel.com/docs/analytics
+ */
+export interface VercelAnalyticsConfig {
+  enabled: boolean;
+  /** Analytics mode: 'auto' (prod only) | 'production' | 'development' @default 'auto' */
+  mode?: 'auto' | 'production' | 'development';
+  /** Enable debug logging @default false */
+  debug?: boolean;
+}
+
 export interface AnalyticsConfig {
   umami?: UmamiConfig;
   google?: GoogleAnalyticsConfig;
+  vercel?: VercelAnalyticsConfig;
 }
 
 // =============================================================================

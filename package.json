@@ -60,6 +60,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@vercel/analytics": "^2.0.1",
     "@waline/client": "^3.8.0",
     "@yeskunall/astro-umami": "0.0.4",
     "astro": "^5.16.6",
