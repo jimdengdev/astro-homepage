@@ -1,0 +1,40 @@
+---
+/**
+ * Vercel Web Analytics 注入组件
+ *
+ * 配置位于 config/site.yaml 的 analytics.vercel 段：
+ *   vercel:
+ *     enabled: true
+ *     mode: auto       # auto | production | development
+ *     debug: false
+ *
+ * 工作原理：
+ *   - 使用 @vercel/analytics 的 inject() 函数注入追踪脚本
+ *   - 初始加载时自动记录 PV
+ *   - 监听 astro:page-load 事件，在 View Transitions 导航时记录 PV
+ *
+ * 注意：需部署在 Vercel 平台才能收集数据
+ * @see https://vercel.com/docs/analytics
+ */
+import Analytics from '@vercel/analytics/astro';
+import yamlConfig from '../../../config/site.yaml';
+
+const vercel = yamlConfig.analytics?.vercel;
+const enabled = vercel?.enabled ?? false;
+const mode = vercel?.mode ?? 'auto';
+---
+
+{enabled && (
+  <>
+    <Analytics mode={mode} />
+    {/* View Transitions 支持：客户端导航时手动触发 pageview */}
+    <script>
+      import { pageview } from '@vercel/analytics';
+
+      // View Transitions 导航后触发 pageview
+      document.addEventListener('astro:page-load', () => {
+        pageview({ path: window.location.pathname });
+      });
+    </script>
+  </>
+)}

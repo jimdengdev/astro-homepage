@@ -591,17 +591,29 @@ comment:
     lang: zh-CN                     # 语言 (默认: 'zh-CN')
 
 # =============================================================================
-# Analytics (Umami)
+# Analytics
 # =============================================================================
-# id: Umami 网站 ID
-# endpoint: Umami 服务器地址
-# enabled: 是否启用统计
-# statistics_display: 统计信息显示配置
-#   token: Umami 分享链接令牌（只读，可安全暴露到客户端）
-#   article_page_views: 在文章详情页显示访问量
-#   footer_site_stats: 在页脚 Site Stats 中显示全站访问量
+# 支持多个统计服务并行运行：Umami（PV 显示）、Google Analytics（GA4）、Vercel Analytics
+#
+# Umami:
+#   id: Umami 网站 ID
+#   endpoint: Umami 服务器地址
+#   enabled: 是否启用统计
+#   statistics_display: 统计信息显示配置
+#     token: Umami 分享链接令牌（只读，可安全暴露到客户端）
+#     article_page_views: 在文章详情页显示访问量
+#     footer_site_stats: 在页脚 Site Stats 中显示全站访问量
+#
+# Vercel:
+#   enabled: 是否启用 Vercel Web Analytics（需部署在 Vercel 平台）
+#   mode: 'auto'（默认，仅生产环境统计）| 'production' | 'development'
+#   debug: 是否开启调试日志（默认 false）
 # -----------------------------------------------------------------------------
 analytics:
+  vercel:
+    enabled: false  # 部署到 Vercel 后设为 true
+    # mode: auto     # auto | production | development
+    # debug: false
   umami:
     # enabled: PV 显示总开关（页脚全站 PV、文章卡片 PV）
     enabled: true
