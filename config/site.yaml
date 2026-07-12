@@ -611,8 +611,8 @@ comment:
 # -----------------------------------------------------------------------------
 analytics:
   vercel:
-    enabled: false  # 部署到 Vercel 后设为 true
-    # mode: auto     # auto | production | development
+    enabled: true  # Vercel Web Analytics enabled
+    mode: auto     # auto | production | development
     # debug: false
   umami:
     # enabled: PV 显示总开关（页脚全站 PV、文章卡片 PV）
