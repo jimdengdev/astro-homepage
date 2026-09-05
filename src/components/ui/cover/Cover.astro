@@ -1,6 +1,6 @@
 ---
 import { Routes } from '@constants/router';
-import { createArticleStatsConfig, siteConfig } from '@constants/site-config';
+import { createArticleStatsConfig } from '@constants/site-config';
 import { getPostReadingTime } from '@lib/content/posts';
 import { displayDate } from '@lib/date';
 import { getLqipStyle } from '@lib/lqip';
@@ -40,12 +40,12 @@ const pageStatsConfig = href ? createArticleStatsConfig(href) : null;
 ---
 
 <div class="relative flex h-[60dvh] z-0 max-h-200 overflow-hidden">
-  <div class="absolute inset-0 h-full bg-black/40"></div>
+  <div class="absolute inset-0 h-full bg-black/30"></div>
   <div class="absolute inset-0 bottom-[8dvh] flex flex-col items-center justify-center px-5 text-white">
     {
       title ? (
         <h1
-          class={`shadow-text word-break flex items-center gap-2 text-center text-5xl/[1.2] font-bold tracking-widest ${MAX_WIDTH.content}`}
+          class={`shadow-text word-break flex items-center gap-2 text-center text-5xl/[1.2] font-semibold tracking-tight ${MAX_WIDTH.content}`}
         >
           {title}
           <Icon
@@ -97,13 +97,7 @@ const pageStatsConfig = href ? createArticleStatsConfig(href) : null;
             </p>
           )}
         </>
-      ) : (
-        <>
-          <h2 class="shadow-text font-chill-round text-5xl/[1.2]">{siteConfig?.alternate}</h2>
-          <h1 class="shadow-text font-chill-round mt-3 text-5xl/[1.2] font-bold tracking-widest">{siteConfig?.title}</h1>
-          <p class="shadow-text mt-5 text-sm">= {siteConfig?.subtitle} =</p>
-        </>
-      )
+      ) : null
     }
   </div>
   <div

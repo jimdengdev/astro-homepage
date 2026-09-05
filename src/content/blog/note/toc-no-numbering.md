@@ -5,6 +5,7 @@ catalog: true
 tocNumbering: false
 date: 2024-01-07 00:00:00
 description: 展示如何关闭文章目录的自动编号功能。
+draft: true
 tags:
   - 目录
   - 教程

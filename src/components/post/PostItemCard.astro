@@ -1,7 +1,6 @@
 ---
 // 导入所需的库和类型
 import { Badge } from '@components/ui/badge';
-import { Button } from '@components/ui/button';
 import { ScrollableRow } from '@components/ui/ScrollableRow';
 import { Routes } from '@constants/router';
 import { createArticleStatsConfig, defaultCoverList } from '@constants/site-config';
@@ -35,7 +34,7 @@ const {
   isUniformPosition = false,
 } = Astro.props as PostItemCardProps;
 
-const showTags = showTagsProp ?? !isSimple;
+const showTags = showTagsProp ?? false;
 const hideCover = hideCoverProp ?? isSimple;
 
 const { cover, date, categories, title, draft, description, slug, link, tags, wordCount, readingTime, postLocale } = data ?? {};
@@ -76,7 +75,7 @@ const pageStatsConfig = createArticleStatsConfig(href);
 
 <div
   class={cn(
-    'hover:shadow-card-darker group text-card-foreground shadow-card relative flex rounded-lg bg-white transition-shadow md:flex-col dark:bg-transparent',
+    'group text-card-foreground relative flex rounded-2xl border border-black/[0.04] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(0,0,0,0.08)] md:flex-col dark:border-white/[0.06] dark:bg-transparent',
     'post-item-card',
   )}
 >
@@ -87,17 +86,17 @@ const pageStatsConfig = createArticleStatsConfig(href);
         href={href}
         style={lqipProps.style}
         class={cn(
-          'md:clip-path-none relative h-46.5 max-h-46.5 w-[calc(50%-2rem)] overflow-hidden md:w-auto',
-          leftClip ? 'rounded-s-lg clip-path-post-img-left order-1' : 'rounded-e-lg clip-path-post-img-right order-2',
-          'md:clip-path-none md:order-0',
-          lqipProps.class,
+          'relative h-46.5 max-h-46.5 w-[42%] shrink-0 self-center overflow-hidden rounded-e-2xl md:w-auto md:self-auto md:rounded-t-2xl',
+          // 左边缘羽化虚化，与文字区域自然过渡
+          '[mask-image:linear-gradient(to_right,transparent_0,black_3rem)] md:[mask-image:none]',
+          'order-2',
         )}
       >
         <img
           src={finalCover}
           loading="lazy"
           alt="post cover"
-          class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-110 group-hover:rotate-3"
+          class="h-full w-full cursor-pointer object-cover transition duration-500 group-hover:scale-105"
         />
       </a>
     )
@@ -105,11 +104,9 @@ const pageStatsConfig = createArticleStatsConfig(href);
   <div
     class={cn(
       'flex flex-col gap-2 pb-2 md:pb-4 pt-4 md:pt-1',
-      'px-4 md:px-4',
-      // Reduce margin on the side adjacent to image diagonal when uniform left position
-      isUniformPosition && !hideCover && leftClip && '-ml-3',
-      hideCover ? 'w-full' : 'w-[calc(50%+2rem)] md:w-full',
-      !hideCover && (leftClip ? 'order-2' : 'order-1'),
+      'px-5 md:px-4',
+      hideCover ? 'w-full' : 'w-[58%] md:w-full',
+      !hideCover && 'order-1',
       'md:order-0',
     )}
   >
@@ -162,7 +159,7 @@ const pageStatsConfig = createArticleStatsConfig(href);
     <div class={cn('mt-1 flex flex-col space-y-1.5 p-0', getStaggerPadding(1), 'md:pl-0 md:pr-0')}>
       <div class="flex items-center gap-2">
         <a href={href} aria-label="post-link" class="min-w-0 flex-1"
-          ><h2 class="text-primary hover:text-blue line-clamp-1 truncate text-xl font-bold transition-colors duration-300">
+          ><h2 class="text-foreground hover:text-blue line-clamp-1 truncate text-xl font-semibold tracking-tight transition-colors duration-300">
             {title}
           </h2>
         </a>
@@ -198,48 +195,23 @@ const pageStatsConfig = createArticleStatsConfig(href);
       showTags && tags?.length && (
         <ScrollableRow
           client:visible
-          className={cn(
-            'pt-1 pb-1',
-            leftClip ? 'mr-18' : 'ml-18',
-            'md:mx-0',
-            getStaggerPadding(3),
-            'md:pl-0 md:pr-0',
-          )}
-          innerClassName="gap-2"
+          className={cn('pt-1 pb-1', 'md:mx-0', getStaggerPadding(3), 'md:pl-0 md:pr-0')}
+          innerClassName="gap-2 justify-start"
           fadeWidth={16}
         >
           {tags.map((tag: string) => (
             <a href={localizedPath(buildTagPath(tag), locale)}>
               <Badge
-                className='hover:text-badge-primary/80 shrink-0 cursor-pointer gap-0.5 border-none px-1 text-xs font-bold whitespace-nowrap transition-colors duration-300 flex'
+                className='hover:text-badge-primary/80 shrink-0 cursor-pointer gap-0.5 border-none px-1 text-xs font-medium whitespace-nowrap transition-colors duration-300 flex'
                 variant="outline"
               >
-                <Icon name="fa6-solid:tags" /> {tag}
+                {tag}
               </Badge>
             </a>
           ))}
         </ScrollableRow>
       )
     }
-    <a
-      href={href}
-      aria-label="more info"
-      class={cn('absolute -bottom-1', hideCover ? '-right-1' : leftClip ? '-right-1' : '-left-1', 'md:left-auto md:-right-1')}
-    >
-      <Button
-        className={cn(
-          'bg-gradient-shoka-button rounded-2xl transition-all hover:translate-y-1 hover:scale-105 md:h-7 md:px-2 md:py-1 md:text-xs',
-          hideCover
-            ? 'rounded-se-none rounded-es-none hover:translate-x-1'
-            : leftClip
-              ? 'rounded-se-none rounded-es-none hover:translate-x-1'
-              : 'rounded-ss-none rounded-ee-none hover:-translate-x-1',
-          'md:rounded-ss-2xl md:rounded-se-none md:rounded-ee-2xl md:rounded-es-none md:hover:translate-x-1',
-        )}
-      >
-        more...
-      </Button>
-    </a>
   </div>
 </div>
 

@@ -166,7 +166,7 @@ if (post.data.description) {
   <TwoColumnLayout post={post}>
     <Cover slot="cover" data={post} />
     <HomeSider slot="sider" type={HomeSiderType.POST} post={post} />
-    <div class={`shadow-box bg-gradient-start flex flex-col gap-2 ${CONTENT_PADDING.standard}`}>
+    <div class={`flex flex-col gap-2 rounded-2xl border border-black/[0.04] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.03)] dark:border-white/[0.06] dark:bg-transparent ${CONTENT_PADDING.standard}`}>
       <!-- Breadcrumb Navigation -->
       <nav class="text-muted-foreground flex items-center justify-between gap-2 text-sm">
         <div class="flex items-center gap-2">

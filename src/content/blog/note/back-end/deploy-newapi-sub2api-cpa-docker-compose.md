@@ -7,19 +7,14 @@ cover: /img/cover/crew_032.webp
 date: 2026-07-05 23:02:00
 description: 在一台 Linux 服务器上，使用 Docker Compose 一键部署 New-API、Sub2API、CPA 三个 AI API 服务，共享同一个 PostgreSQL 和 Redis 实例，并通过 Caddy 实现域名反向代理和自动 HTTPS 证书，解决迁移备份难题。
 tags:
-  - Docker
-  - PostgreSQL
-  - Redis
   - Caddy
   - newapi
   - sub2api
   - CPA
-  - 部署
 keywords:
   - newapi
   - sub2api
   - cpa
-  - AI API 部署
   - caddy
 categories:
   - [笔记, 后端]
