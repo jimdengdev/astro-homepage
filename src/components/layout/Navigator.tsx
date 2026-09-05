@@ -26,9 +26,16 @@ interface NavigatorProps {
 // Pre-filter navigation items at module load (config is static)
 const filteredRouters = filterNavItems(routers, configuredSeriesSlugs, enabledSeriesSlugs, RESERVED_ROUTES);
 
-// Icon component for navigation items - uses @iconify/react for dynamic icons
+// Icon component for navigation items - uses @iconify/react for dynamic icons.
+// Icon data loads asynchronously (Iconify API); the fixed-size wrapper reserves
+// space so late icon rendering does not shift nav geometry (which would yank
+// hover-opened dropdowns out from under the cursor).
 function NavIcon({ name }: { name: string }) {
-  return <Icon icon={name} className="mr-1.5 h-4 w-4" />;
+  return (
+    <span className="mr-1.5 inline-flex h-4 w-4 shrink-0 items-center justify-center">
+      <Icon icon={name} className="h-4 w-4" />
+    </span>
+  );
 }
 
 // Button link component
@@ -66,8 +73,6 @@ const Navigator = memo(function Navigator({ currentPath, locale = defaultLocale 
   const strippedPath = stripLocaleFromPath(currentPath);
   const isPostPageMobile = isTablet && strippedPath.startsWith('/post/');
 
-  const scrollEndTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const isScrollingRef = useRef(false);
   const firstScrollRef = useRef(true);
 
   // Apply with-background class based on scroll position
@@ -88,18 +93,9 @@ const Navigator = memo(function Navigator({ currentPath, locale = defaultLocale 
 
     // Post page mobile: keep header visible during scroll
     if (isPostPageMobile) {
-      if (scrollEndTimerRef.current) {
-        clearTimeout(scrollEndTimerRef.current);
-      }
-      isScrollingRef.current = true;
-
       // Ensure header is visible
       siteHeader?.classList.remove('-translate-y-full');
       mobileMenuContainer?.classList.remove('-translate-y-full');
-
-      scrollEndTimerRef.current = setTimeout(() => {
-        isScrollingRef.current = false;
-      }, 800);
       return;
     }
 
@@ -113,15 +109,6 @@ const Navigator = memo(function Navigator({ currentPath, locale = defaultLocale 
     }
   }, [direction, isPostPageMobile]);
 
-  // Cleanup timer on unmount
-  useEffect(() => {
-    return () => {
-      if (scrollEndTimerRef.current) {
-        clearTimeout(scrollEndTimerRef.current);
-      }
-    };
-  }, []);
-
   return (
     <div className="flex grow tablet:grow-0 items-center">
       {/* Desktop navigation */}
@@ -132,7 +119,7 @@ const Navigator = memo(function Navigator({ currentPath, locale = defaultLocale 
             return <DropdownNav key={item.path ?? item.name} item={item} currentPath={currentPath} locale={locale} />;
           }
           if (!item.path || !displayName) return null;
-          const localizedUrl = localizedPath(item.path, locale);
+          const localizedUrl = item.localeIndependent ? item.path : localizedPath(item.path, locale);
           return (
             <ButtonLink key={item.path} url={localizedUrl} label={displayName} isActive={item.path === strippedPath}>
               {item.icon && <NavIcon name={item.icon} />}

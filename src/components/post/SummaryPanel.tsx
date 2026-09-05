@@ -61,6 +61,8 @@ export interface SummaryPanelProps {
   typingSpeed?: number;
   /** 自定义类名 */
   className?: string;
+  /** 页面语言；SSR 岛屿必须传入以避免水合文本不匹配 */
+  locale?: string;
 }
 
 const SOURCE_ICONS: Record<SummarySource, ReactNode> = {
@@ -74,7 +76,7 @@ const SOURCE_ICONS: Record<SummarySource, ReactNode> = {
       className="size-4 text-primary"
       aria-hidden="true"
     >
-      <path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z" />
+      <path d="M20 22H4C3.45 22 3 21.55 3 21V3C3 2.45 3.45 2 4 2H20C20.55 2 21 2.45 21 3V21C21 21.55 20.55 22 20 22ZM19 20V4H5V20H19ZM7 6H11V10H7V6ZM7 12H17V14H7V12ZM7 16H17V18H7V16ZM13 7H17V9H13V7Z" />
     </svg>
   ),
 };
@@ -85,15 +87,15 @@ const SOURCE_LABEL_KEYS: Record<SummarySource, TranslationKey> = {
   auto: 'summary.auto',
 };
 
-function SummaryPanel({ summary, source = 'ai', typingSpeed = 25, className }: SummaryPanelProps) {
+function SummaryPanel({ summary, source = 'ai', typingSpeed = 25, className, locale }: SummaryPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const hasAnimatedRef = useRef(false);
   const animationRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
   const textRef = useRef<HTMLSpanElement | null>(null);
 
-  const { t } = useTranslation();
+  const { t } = useTranslation(locale);
   const icon = SOURCE_ICONS[source];
   const label = t(SOURCE_LABEL_KEYS[source]);
 
@@ -113,10 +115,10 @@ function SummaryPanel({ summary, source = 'ai', typingSpeed = 25, className }: S
     if (!textRef.current) return;
 
     // 如果用户偏好减少动画，或已经播放过动画，直接显示全部
-    if (prefersReducedMotion || hasAnimated) {
+    if (prefersReducedMotion || hasAnimatedRef.current) {
       textRef.current.textContent = summary;
       setIsTyping(false);
-      setHasAnimated(true);
+      hasAnimatedRef.current = true;
       return;
     }
 
@@ -136,12 +138,12 @@ function SummaryPanel({ summary, source = 'ai', typingSpeed = 25, className }: S
           textRef.current.textContent = summary;
         }
         setIsTyping(false);
-        setHasAnimated(true);
+        hasAnimatedRef.current = true;
       }
     };
 
     animationRef.current = requestAnimationFrame(animate);
-  }, [summary, typingSpeed, prefersReducedMotion, hasAnimated]);
+  }, [summary, typingSpeed, prefersReducedMotion]);
 
   // 展开/收起
   const handleToggle = useCallback(() => {

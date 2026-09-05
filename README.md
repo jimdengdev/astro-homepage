@@ -34,7 +34,7 @@
 
 ## 部署
 
-支持 **Vercel**、**Netlify** 等主流平台自动部署，会根据环境自动选择适配器，未识别平台则使用 Node.js 保底适配器（适合 Docker 或自托管）。
+默认输出纯静态站，可直接部署到 **Vercel**、**Netlify**、nginx 等平台。只有启用可选的“碎碎念”动态归档时，才需要 Astro Node standalone 部署；两种模式的配置见[部署架构](./docs/overview/11-deployment-adapters.md)。
 
 ### 一键部署
 
@@ -56,7 +56,11 @@
 docker compose --env-file ./.env -f docker/docker-compose.yml up -d --build
 ```
 
+启用“碎碎念”后请改用 `pnpm docker:up:dynamic`。该功能默认关闭，完整配置与真实链路验收见[碎碎念指南](./docs/features/moments.md)。
+
 ### 本地开发
+
+开始前请确保已安装 Node.js 22.20.0 或更高版本，以及 pnpm 10.28.2。
 
 1. 克隆项目到本地
 
@@ -79,7 +83,7 @@ pnpm dev
 
 ## 功能特性
 
-- 基于 Astro 5.x，静态站点生成，性能优异
+- 基于 Astro 7.x，静态站点生成，性能优异
 - 优雅的深色/浅色主题切换
 - 基于 Pagefind 的无后端全站搜索
 - **可更换评论系统**：支持 Waline（推荐）、Giscus、Remark42、Twikoo 四种评论组件，配置文件一键切换，主题自动跟随
@@ -90,6 +94,7 @@ pnpm dev
 - [可开关] 多系列文章支持（周刊、书摘等自定义系列，支持自定义 URL slug）
   > 💡 **说明**：featuredSeries 适合文章数量较多的分类，将其从首页主列表分离以避免刷屏。系列文章仅最新一篇在首页高亮，其余通过系列专属页面访问，但在归档、分类、标签等页面仍正常展示。
 - [可开关] **追番页面（Bangumi）**：接入 [Bangumi API](https://bgm.tv)，展示动画/书籍/音乐/游戏收藏，支持分类切换、状态筛选、分页浏览，数据实时获取
+- [可开关] **碎碎念动态归档**：从 koharu-suite 的公开频道读取消息，提供频道、详情、搜索、cursor 分页和 branded RSS；默认静态部署完全不受影响，详见[配置指南](./docs/features/moments.md)
 - **独立页面系统**：在 `src/pages/` 下创建 `.md` 文件即可添加自定义页面（关于、歌单等），支持自定义封面标题和评论开关
 - 响应式设计
 - 草稿与置顶功能
@@ -118,6 +123,7 @@ pnpm koharu new          # 新建内容（文章/友链）
 pnpm koharu backup       # 备份博客内容和配置
 pnpm koharu restore      # 从备份恢复
 pnpm koharu update       # 更新主题
+pnpm koharu migrate      # 一键迁移历史文章数据
 pnpm koharu generate     # 生成内容资产 (LQIP, 相似度, AI 摘要)
 pnpm koharu clean        # 清理旧备份
 pnpm koharu list         # 查看所有备份
@@ -167,6 +173,20 @@ pnpm koharu restore --latest
 # 预览将要还原的文件（不实际还原）
 pnpm koharu restore --dry-run
 ```
+
+### 历史内容迁移
+
+升级到 Astro 6 或还原旧备份后，必须在运行 `pnpm dev` 或 `pnpm build` 前迁移文章链接。从旧版升级时，
+请先等 `pnpm koharu update` 进程完全退出，再执行：
+
+```bash
+pnpm koharu migrate --dry-run
+pnpm koharu migrate
+```
+
+迁移会先自动创建基础备份，保留已有 `link`，将旧 `slug` 安全转换为 `link`，并为缺少两者的文章补充稳定链接。
+脚本可重复执行；发现重复链接或无法安全处理的 frontmatter 时会停止且不修改文件。通过 Koharu CLI 还原旧备份时会自动执行同一迁移。
+`pnpm dev` 和 `pnpm build` 也会先执行只读检查，在内容尚未迁移时停止并显示修复命令。
 
 ### 更新主题
 
@@ -336,7 +356,7 @@ comment:
 | ----------------------------------------- | ---------- | --------------------------------------------------------------- | ---------------------------- |
 | **[余弦の博客](http://blog.cosine.ren/)** | **cosine** | [cosZone/astro-koharu](https://github.com/cosZone/astro-koharu) | 本主题                       |
 | [雪花的博客](https://xhblog.top/)         | XueHua-s   | [XueHua-s/astro-snow](https://github.com/XueHua-s/astro-snow)   | 精简了很多功能，增加了起始页 |
-| [Ksable's 小屋](https://blog.ksable.top/) | Ksable    | - | 修改 / 新增了部分功能 |
+| [Ksable's 小屋](https://blog.ksable.top/) | Ksable    | [God-2077/astro-blog](https://github.com/God-2077/astro-blog) | 修改 / 新增了部分功能 |
 
 ## 🙏 鸣谢
 

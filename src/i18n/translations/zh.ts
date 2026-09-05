@@ -6,7 +6,6 @@
  */
 
 export const uiStrings = {
-  // ── Navigation ──────────────────────────────────────────────
   'nav.home': '首页',
   'nav.posts': '文章',
   'nav.categories': '分类',
@@ -17,14 +16,11 @@ export const uiStrings = {
   'nav.music': '歌单',
   'nav.weekly': '周刊',
   'nav.bangumi': '追番',
-  'nav.gallery': '相册',
-  'nav.diary': '日记',
-
-  // ── Common ──────────────────────────────────────────────────
   'common.search': '搜索',
   'common.close': '关闭',
   'common.copy': '复制',
   'common.copied': '已复制',
+  'common.copyFailed': '自动复制失败，请手动复制',
   'common.loading': '加载中...',
   'common.noResults': '没有找到结果',
   'common.backToTop': '回到顶部',
@@ -36,8 +32,6 @@ export const uiStrings = {
   'common.expand': '展开',
   'common.collapse': '收起',
   'common.menuLabel': '{name}菜单',
-
-  // ── Post ────────────────────────────────────────────────────
   'post.readMore': '阅读全文',
   'post.totalPosts': '共 {count} 篇文章',
   'post.stickyPosts': '置顶文章',
@@ -58,8 +52,6 @@ export const uiStrings = {
   'post.draft': '草稿',
   'post.pinned': '置顶',
   'post.noPostsFound': '暂无文章',
-
-  // ── Categories & Tags ───────────────────────────────────────
   'category.allCategories': '所有分类',
   'category.postsInCategory': '{name} 分类下的文章',
   'category.totalCategories': '共 {count} 个分类',
@@ -69,12 +61,8 @@ export const uiStrings = {
   'tag.totalTags': '共 {count} 个标签',
   'tag.all': '全部',
   'tag.postCount': '{count} 篇文章',
-
-  // ── Archives ────────────────────────────────────────────────
   'archives.title': '归档',
   'archives.totalPosts': '共 {count} 篇',
-
-  // ── Search ──────────────────────────────────────────────────
   'search.placeholder': '请输入关键词搜索',
   'search.label': '搜索本站',
   'search.clear': '清空',
@@ -91,8 +79,6 @@ export const uiStrings = {
   'search.dialogClose': '关闭',
   'search.dialogSelect': '选择',
   'search.dialogOpen': '打开',
-
-  // ── Friends ─────────────────────────────────────────────────
   'friends.title': '友情链接',
   'friends.applyTitle': '申请友链',
   'friends.siteName': '站点名称',
@@ -115,18 +101,6 @@ export const uiStrings = {
   'friends.copyConfig': '复制配置',
   'friends.copiedConfig': '已复制!',
   'friends.hint': '提示: 复制上方代码并在下方评论区粘贴发送即可，我会收到的～',
-
-  // ── Gallery ─────────────────────────────────────────────────
-  'gallery.title': '相册',
-  'gallery.subtitle': '记录生活中的美好瞬间',
-  'gallery.backToList': '返回相册列表',
-  'gallery.photoCount': '{count} 张照片',
-  'gallery.allTags': '全部',
-  'gallery.noAlbums': '暂无相册',
-  'gallery.location': '地点',
-  'gallery.date': '日期',
-
-  // ── Code Block ──────────────────────────────────────────────
   'code.copy': '复制代码',
   'code.copied': '已复制！',
   'code.fullscreen': '全屏查看',
@@ -134,8 +108,8 @@ export const uiStrings = {
   'code.wrapLines': '自动换行',
   'code.viewSource': '查看源码',
   'code.viewRendered': '查看渲染结果',
-
-  // ── Diagram / Infographic ───────────────────────────────────
+  'code.collapse': '收起代码',
+  'code.expand': '展开代码',
   'diagram.fullscreen': '全屏查看',
   'diagram.exitFullscreen': '退出全屏',
   'diagram.viewSource': '查看源码',
@@ -144,8 +118,6 @@ export const uiStrings = {
   'diagram.resetZoom': '重置缩放',
   'diagram.fitToScreen': '适应屏幕',
   'diagram.download': '下载图片',
-
-  // ── Image Lightbox ──────────────────────────────────────────
   'image.zoomIn': '放大',
   'image.zoomOut': '缩小',
   'image.resetZoom': '重置',
@@ -157,8 +129,6 @@ export const uiStrings = {
   'image.counter': '{current} / {total}',
   'image.hintDesktop': '双击放大 · 滚轮/双指缩放',
   'image.hintMobile': '双击放大 · 双指缩放',
-
-  // ── Media Controls ──────────────────────────────────────────
   'media.play': '播放',
   'media.pause': '暂停',
   'media.mute': '静音',
@@ -175,8 +145,6 @@ export const uiStrings = {
   'media.playModeOrder': '顺序播放',
   'media.playModeRandom': '随机播放',
   'media.playModeLoop': '单曲循环',
-
-  // ── Footer ──────────────────────────────────────────────────
   'footer.poweredBy': '由 {name} 驱动',
   'footer.totalPosts': '{count} 篇文章',
   'footer.totalWords': '{count} 字',
@@ -186,30 +154,59 @@ export const uiStrings = {
   'footer.runningDays': '已运行 {days} 天',
   'footer.wordUnit': '字',
   'footer.postUnit': '篇',
-
-  // ── Analytics Stats ─────────────────────────────────────────
   'stats.pageviews': '访问量',
-
-  // ── Pagination ──────────────────────────────────────────────
   'pagination.prev': '上一页',
   'pagination.next': '下一页',
   'pagination.page': '第 {page} 页',
   'pagination.currentPage': '第 {page} 页，当前页',
   'pagination.of': '共 {total} 页',
-
-  // ── Breadcrumb ──────────────────────────────────────────────
   'breadcrumb.home': '首页',
   'breadcrumb.goToCategory': '前往{name}分类',
-
-  // ── Floating Group ──────────────────────────────────────────
   'floating.backToTop': '回到顶部',
   'floating.scrollToBottom': '滚到底部',
   'floating.toggleTheme': '切换主题',
   'floating.christmas': '切换圣诞特效',
   'floating.bgm': '背景音乐',
   'floating.toggleToolbar': '展开/收起工具栏',
-
-  // ── Announcement ────────────────────────────────────────────
+  'floating.settings': '设置',
+  'settings.title': '设置',
+  'settings.reader': '阅读',
+  'settings.general': '通用',
+  'settings.closePanel': '关闭设置面板',
+  'settings.fontPreset': '字体',
+  'settings.fontPreset.round': '圆体',
+  'settings.fontPreset.system': '系统黑体',
+  'settings.fontPreset.serif': '衬线',
+  'settings.fontPreset.wenkai': '文楷',
+  'settings.fontPreset.local': '本机字体',
+  'settings.localFont.title': '选择本机字体',
+  'settings.localFont.description': '为文章正文选择这台设备上安装的字体',
+  'settings.localFont.permission': '浏览器会请求读取本机字体列表。字体数据仅用于本地预览和选择，不会上传。',
+  'settings.localFont.requestAccess': '读取本机字体',
+  'settings.localFont.loading': '正在读取字体…',
+  'settings.localFont.search': '搜索字体',
+  'settings.localFont.preview': '春风又绿江南岸 Aa 123',
+  'settings.localFont.empty': '没有找到匹配的字体',
+  'settings.localFont.unsupported': '当前浏览器无法列出本机字体，你仍可以输入准确的字体名称。',
+  'settings.localFont.denied': '未获得本机字体权限，你仍可以手动输入字体名称。',
+  'settings.localFont.error': '读取本机字体失败，你仍可以手动输入字体名称。',
+  'settings.localFont.manualLabel': '字体名称',
+  'settings.localFont.manualPlaceholder': '例如：霞鹜文楷',
+  'settings.localFont.useFont': '使用',
+  'settings.localFont.change': '更换本机字体',
+  'settings.fontSize': '字号',
+  'settings.lineHeight': '行距',
+  'settings.measure': '行宽',
+  'settings.auto': '自动',
+  'settings.justify': '两端对齐',
+  'settings.scrollProgress': '滚动进度条',
+  'settings.christmas': '圣诞特效',
+  'settings.bgmWidget': '背景音乐控件',
+  'settings.masterMotion': '减弱动画',
+  'settings.wave': '封面海浪',
+  'settings.reset': '重置为默认',
+  'settings.waveDisabledByMasterMotion': '「减弱动画」开启时不可用',
+  'settings.invalidNumber': '请输入正数',
   'announcement.title': '公告',
   'announcement.new': '新',
   'announcement.count': '{count} 条公告',
@@ -219,8 +216,6 @@ export const uiStrings = {
   'announcement.learnMore': '了解更多',
   'announcement.empty': '暂无公告',
   'announcement.emptyHint': '有新公告时会在这里显示',
-
-  // ── Quiz ────────────────────────────────────────────────────
   'quiz.check': '检查答案',
   'quiz.correct': '回答正确！',
   'quiz.incorrect': '回答错误，请重试',
@@ -245,33 +240,21 @@ export const uiStrings = {
   'quiz.quizOptions': '{type}选项',
   'quiz.trueFalseCorrect': '回答正确！',
   'quiz.trueFalseIncorrect': '回答错误。该命题是{answer}的。',
-
-  // ── Encrypted Block ─────────────────────────────────────────
   'encrypted.locked': '内容已加密',
   'encrypted.placeholder': '请输入密码查看内容',
   'encrypted.submit': '解锁',
   'encrypted.incorrect': '密码错误',
-
-  // ── Encrypted Post ─────────────────────────────────────────
   'encrypted.post.title': '此文章已加密',
   'encrypted.post.description': '请输入密码以查看文章内容',
   'encrypted.post.rssNotice': '此文章已加密，请在网页中查看',
-
-  // ── 404 ─────────────────────────────────────────────────────
   'notFound.title': '页面未找到',
   'notFound.description': '你访问的页面不存在',
   'notFound.backHome': '返回首页',
   'notFound.browseArchives': '浏览归档',
   'notFound.message': '喵？页面被吃掉了~',
-
-  // ── Category Stats ────────────────────────────────────────
   'category.subCategoryCount': '{count} 个子分类',
   'category.postCount': '{count} 篇文章',
-
-  // ── Post Card ─────────────────────────────────────────────
   'post.readingTimeTooltip': '预计阅读时长: {time}',
-
-  // ── Featured Series ─────────────────────────────────────────
   'series.latestPost': '最新文章',
   'series.viewAll': '查看全部',
   'series.postCount': '{count} 篇',
@@ -279,60 +262,37 @@ export const uiStrings = {
   'series.rss': 'RSS 订阅',
   'series.chromeExtension': 'Chrome 插件',
   'series.docs': '文档',
-
-  // ── Home Info ───────────────────────────────────────────────
   'homeInfo.articles': '文章',
   'homeInfo.categories': '分类',
   'homeInfo.tags': '标签',
-
-  // ── Drawer ──────────────────────────────────────────────────
   'drawer.navMenu': '导航菜单',
   'drawer.close': '关闭菜单',
   'drawer.openMenu': '打开菜单',
-
-  // ── Summary Panel ───────────────────────────────────────────
   'summary.description': '人工摘要',
   'summary.ai': 'AI 摘要',
   'summary.auto': '摘要',
-
-  // ── Random Posts ────────────────────────────────────────────
   'post.randomPosts': '随机文章',
-
-  // ── Tag Component ───────────────────────────────────────────
   'tag.expandAll': '展开全部',
   'tag.viewTagPosts': '查看标签「{tag}」的 {count} 篇文章',
-
-  // ── Audio Player ────────────────────────────────────────────
   'audio.loading': '加载播放列表…',
   'audio.loadError': '加载失败: {error}',
   'audio.retry': '重试',
   'audio.empty': '暂无曲目',
   'audio.listTab': '列表 {index}',
   'audio.closePanel': '关闭面板',
-
-  // ── Table of Contents ───────────────────────────────────────
   'toc.title': '文章目录',
   'toc.expand': '展开目录',
   'toc.empty': '暂无目录',
-
-  // ── Embed ─────────────────────────────────────────────────
   'embed.loadingTweet': '正在加载 Tweet',
-
-  // ── Search Shortcut ───────────────────────────────────────
+  'content.revealSpoiler': '点击显示隐藏内容',
   'search.searchShortcut': '搜索 ({shortcut})',
-
-  // ── Sider Segmented ─────────────────────────────────────────
   'sider.overview': '站点概览',
   'sider.toc': '文章目录',
   'sider.series': '系列文章',
-
-  // ── Copy Link ───────────────────────────────────────────────
   'cover.copyLink': '复制链接',
-
-  // ── Comment ────────────────────────────────────────────────
   'comment.prompt': '喜欢的话，留下你的评论吧～',
-
-  // ── Bangumi ───────────────────────────────────────────────
+  'comment.error': '评论加载失败，请刷新页面重试',
+  'comment.retry': '刷新重试',
   'bangumi.title': '追番',
   'bangumi.description': '我的追番记录',
   'bangumi.anime': '动画',
@@ -350,8 +310,77 @@ export const uiStrings = {
   'bangumi.noItems': '暂无收藏',
   'bangumi.error': '加载失败，请稍后重试',
   'bangumi.retry': '重试',
-
-  // ── Diary ───────────────────────────────────────────────────
+  'nav.moments': '碎碎念',
+  'moments.title': '碎碎念',
+  'moments.description': '记录频道中的日常消息',
+  'moments.channels': '碎碎念频道',
+  'moments.search': '搜索碎碎念',
+  'moments.searchForm': '搜索碎碎念内容',
+  'moments.searchQuery': '搜索关键词',
+  'moments.searchPlaceholder': '输入至少 3 个字符',
+  'moments.searchEmpty': '输入关键词，搜索所有公开频道的消息',
+  'moments.searchHint': '请输入至少 3 个 Unicode 字符',
+  'moments.searchTooLong': '搜索内容不能超过 200 个 Unicode 字符',
+  'moments.channel': '频道',
+  'moments.allChannels': '全部频道',
+  'moments.sort': '排序',
+  'moments.relevance': '相关度',
+  'moments.newest': '最新发布',
+  'moments.searchResults': '搜索结果',
+  'moments.noResults': '没有找到匹配的碎碎念',
+  'moments.clearSearch': '清除搜索条件',
+  'moments.updated': '已更新',
+  'moments.permalink': '永久链接',
+  'moments.copyLink': '复制链接',
+  'moments.copyFailed': '复制失败，请手动复制',
+  'moments.viewSource': '查看源消息',
+  'moments.emptyMessage': '空消息',
+  'moments.mediaMessage': '媒体消息',
+  'moments.expand': '展开全文',
+  'moments.collapse': '收起全文',
+  'moments.mediaProcessing': '媒体处理中',
+  'moments.mediaUnavailable': '媒体暂不可用',
+  'moments.image': '图片',
+  'moments.video': '视频',
+  'moments.audio': '音频',
+  'moments.document': '文件',
+  'moments.openDocument': '打开文件',
+  'moments.mediaMore': '另有 {count} 个媒体',
+  'moments.loadEarlier': '加载更早内容',
+  'moments.loadingEarlier': '正在加载更早内容',
+  'moments.loadedEarlier': '已加载更早内容',
+  'moments.allLoaded': '已加载全部内容',
+  'moments.loadEarlierFailed': '加载失败，请重试',
+  'moments.back': '返回上一页',
+  'moments.pagination': '碎碎念分页',
+  'moments.newer': '较新一条',
+  'moments.older': '较早一条',
+  'moments.contextNavigation': '相邻碎碎念',
+  'moments.tags': '标签',
+  'moments.emptyChannels': '暂无可见频道',
+  'moments.emptyChannel': '这个频道还没有消息',
+  'moments.notFound': '没有找到这条碎碎念',
+  'moments.notFoundDescription': '链接可能已失效，或内容不属于当前频道。',
+  'moments.rateLimited': '请求过于频繁',
+  'moments.rateLimitedDescription': '服务暂时限制了请求，请稍后重试。',
+  'moments.unavailable': '碎碎念暂时不可用',
+  'moments.unavailableDescription': '动态内容服务暂时无法连接，博客文章仍可正常浏览。',
+  'moments.retry': '重试',
+  'moments.backToIndex': '返回碎碎念',
+  'moments.cacheNotice': '内容可能有最多 5 分钟延迟',
+  'moments.rss': 'RSS 订阅',
+  'moments.globalRss': '订阅全部碎碎念',
+  'moments.channelRss': '订阅此频道',
+  'nav.gallery': '相册',
+  'nav.diary': '日记',
+  'gallery.title': '相册',
+  'gallery.subtitle': '记录生活中的美好瞬间',
+  'gallery.backToList': '返回相册列表',
+  'gallery.photoCount': '{count} 张照片',
+  'gallery.allTags': '全部',
+  'gallery.noAlbums': '暂无相册',
+  'gallery.location': '地点',
+  'gallery.date': '日期',
   'diary.title': '日记',
   'diary.description': '我的日记记录',
   'diary.today': '今天',
@@ -361,4 +390,4 @@ export const uiStrings = {
   'diary.fromMemos': '来自 Memos',
   'diary.error': '加载失败，请稍后重试',
   'diary.retry': '重试',
-} as const;
+};
