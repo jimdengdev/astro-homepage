@@ -28,7 +28,6 @@ const locale = getLocaleFromUrl(Astro.url.pathname);
   <div class={`mx-auto flex items-center justify-between tablet:w-full px-6 tablet:pl-10 tablet:pr-3 ${MAX_WIDTH.content}`}>
     <!-- Desktop: Always show logo -->
     <a
-      transition:persist="page-header-avatar"
       class="tablet:hidden -my-4 mr-4 flex cursor-pointer items-center justify-center gap-1 whitespace-nowrap"
       href="/"
       target="_self"
