@@ -10,8 +10,13 @@ set -euo pipefail
 #   --generate     生成内容资产后启动
 #   --build        构建生产版本并预览
 #   --check        运行类型检查
+#   --stop         停止正在运行的开发服务器
 #   --help         显示帮助信息
 # =============================================================================
+
+# 开发服务器端口
+DEV_PORT=4321
+CMS_PORT=5173
 
 # 颜色定义
 RED='\033[0;31m'
@@ -49,6 +54,7 @@ print_help() {
     echo "  --build      构建生产版本并预览"
     echo "  --check      运行类型检查"
     echo "  --cms        启动本地 CMS 管理界面"
+    echo "  --stop       停止正在运行的开发服务器"
     echo "  --help       显示此帮助信息"
     echo ""
     echo "示例:"
@@ -132,24 +138,76 @@ check_config() {
 }
 
 # ---------------------------------------------------------------------------
-# 4. 启动命令
+# 4. 端口占用与 Vite 缓存处理
+# ---------------------------------------------------------------------------
+# 释放被占用的端口（解决 "Port 4321 is already in use" / astro dev lock 报错）
+free_port() {
+    local port="$1"
+    local pids
+    pids=$(lsof -ti ":$port" 2>/dev/null || true)
+    if [ -n "$pids" ]; then
+        log_warn "端口 $port 已被占用 (PID: $(echo "$pids" | tr '\n' ' '))，正在释放..."
+        echo "$pids" | xargs kill -9 2>/dev/null || true
+        sleep 1
+        log_success "端口 $port 已释放"
+    fi
+}
+
+stop_dev() {
+    local pids
+    pids=$(lsof -ti ":$DEV_PORT" 2>/dev/null || true)
+    if [ -n "$pids" ]; then
+        log_info "停止开发服务器 (PID: $(echo "$pids" | tr '\n' ' '))..."
+        echo "$pids" | xargs kill -9 2>/dev/null || true
+        log_success "开发服务器已停止"
+    else
+        log_info "没有正在运行的开发服务器"
+    fi
+}
+
+# 计算环境指纹：Astro 版本 + lockfile 哈希
+env_fingerprint() {
+    local lock_hash astro_ver
+    lock_hash=$(shasum pnpm-lock.yaml 2>/dev/null | cut -d' ' -f1 || echo 'none')
+    astro_ver=$(node -p "try{require('astro/package.json').version}catch(e){'none'}" 2>/dev/null || echo 'none')
+    echo "${astro_ver}-${lock_hash:0:12}"
+}
+
+# 依赖/Astro 版本变化时清理 Vite 预构建缓存
+# 解决升级依赖后出现的 UnhandledRejection、依赖扫描失败等问题
+refresh_vite_cache() {
+    local current_fp fp_file="node_modules/.dev-fingerprint"
+    current_fp=$(env_fingerprint)
+    if [ -f "$fp_file" ] && [ "$(cat "$fp_file")" != "$current_fp" ]; then
+        log_warn "检测到依赖或 Astro 版本变化，清理 Vite 预构建缓存..."
+        rm -rf node_modules/.vite
+        log_success "Vite 缓存已清理"
+    fi
+    echo "$current_fp" > "$fp_file"
+}
+
+# ---------------------------------------------------------------------------
+# 5. 启动命令
 # ---------------------------------------------------------------------------
 start_dev() {
+    free_port "$DEV_PORT"
+    refresh_vite_cache
     log_info "启动开发服务器..."
     echo ""
-    log_info "🌐 访问地址: ${CYAN}http://localhost:4321${NC}"
+    log_info "🌐 访问地址: ${CYAN}http://localhost:${DEV_PORT}${NC}"
     echo ""
     pnpm dev
 }
 
 start_build_preview() {
+    free_port "$DEV_PORT"
     log_info "构建生产版本..."
     pnpm build
     log_success "构建完成"
     echo ""
     log_info "启动预览服务器..."
     echo ""
-    log_info "🌐 访问地址: ${CYAN}http://localhost:4321${NC}"
+    log_info "🌐 访问地址: ${CYAN}http://localhost:${DEV_PORT}${NC}"
     echo ""
     pnpm preview
 }
@@ -159,9 +217,11 @@ start_generate_and_dev() {
     pnpm run generate:lqips
     log_success "LQIP 生成完成"
     echo ""
+    free_port "$DEV_PORT"
+    refresh_vite_cache
     log_info "启动开发服务器..."
     echo ""
-    log_info "🌐 访问地址: ${CYAN}http://localhost:4321${NC}"
+    log_info "🌐 访问地址: ${CYAN}http://localhost:${DEV_PORT}${NC}"
     echo ""
     pnpm dev
 }
@@ -171,10 +231,11 @@ start_cms() {
         log_warn "CMS 依赖未安装，正在安装..."
         cd cms && pnpm install && cd ..
     fi
+    free_port "$CMS_PORT"
     log_info "启动 CMS 管理界面..."
     echo ""
-    log_info "🌐 CMS 地址: ${CYAN}http://localhost:5173${NC}"
-    log_info "📝 开发服务器: ${CYAN}http://localhost:4321${NC}"
+    log_info "🌐 CMS 地址: ${CYAN}http://localhost:${CMS_PORT}${NC}"
+    log_info "📝 开发服务器: ${CYAN}http://localhost:${DEV_PORT}${NC}"
     echo ""
     pnpm cms
 }
@@ -224,6 +285,10 @@ main() {
             check_config
             install_deps
             start_cms
+            ;;
+        --stop)
+            stop_dev
+            exit 0
             ;;
         "")
             # 默认：安装依赖并启动开发服务器
