@@ -2,6 +2,7 @@
 title: 从 Astro 5 到 Astro 6：astro-koharu 的一次完整迁移实录
 link: astro-6-migration
 catalog: true
+draft: true
 date: 2026-07-20 03:50:03
 updated: 2026-07-23 00:30:12
 description: 记录 astro-koharu 从 Astro 5.16.6 升级到 6.4.8 的完整过程，并解决历史文章、旧备份与下游仓库的一键迁移问题。
