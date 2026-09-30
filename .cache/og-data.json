@@ -1,12 +1,4 @@
 {
-  "https://react-tweet.vercel.app/": {
-    "data": {
-      "originUrl": "https://react-tweet.vercel.app/",
-      "url": "https://react-tweet.vercel.app/",
-      "error": "fetch failed"
-    },
-    "timestamp": 1788602419325
-  },
   "https://github.com/vercel/react-tweet": {
     "data": {
       "originUrl": "https://github.com/vercel/react-tweet",
@@ -24,7 +16,7 @@
       "url": "https://zhuanlan.zhihu.com/p/1900483903984243480",
       "error": "Failed to fetch: 403"
     },
-    "timestamp": 1788602419456
+    "timestamp": 1790754885531
   },
   "https://github.com/cosZone/astro-koharu": {
     "data": {
@@ -37,12 +29,26 @@
     },
     "timestamp": 1788602421062
   },
+  "https://react-tweet.vercel.app/": {
+    "data": {
+      "originUrl": "https://react-tweet.vercel.app/",
+      "url": "https://react-tweet.vercel.app/",
+      "title": "Introduction",
+      "description": "Embed tweets in your React application.",
+      "image": null,
+      "logo": "https://react-tweet.vercel.app/#fff"
+    },
+    "timestamp": 1790754886697
+  },
   "https://jimdeng.com/": {
     "data": {
       "originUrl": "https://jimdeng.com/",
       "url": "https://jimdeng.com/",
-      "error": "Request timeout"
+      "title": "jimdeng = Jimdeng’s Blog = Code is cheap, show me the prompt",
+      "description": "后端开发 / Agent 开发 / 海米",
+      "image": "https://jimdeng.com/img/favicon-512x512.png",
+      "logo": "https://www.jimdeng.com/favicon-512x512.png"
     },
-    "timestamp": 1788602426897
+    "timestamp": 1790754917985
   }
 }
